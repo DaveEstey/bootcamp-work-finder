@@ -61,62 +61,18 @@ router.post('/', (req, res) => {
     });
 });
 
-//Update user
-// router.put('/:id', (req, res) => {
-//     User.update(req.body, {
-//         where: {
-//             id: req.params.id,
-//         },
-//     })
-//     .then((user) => {
-//        const skills = SkillTag.findAll({
-//             where: {
-//                 user_id: req.params.id,
-//             },
-//         });
-//         return skills;
-//     })
-//     .then((skillTags) => {
-//         const skillTagIds = skillTags.map(({ tag_id }) => tag_id);
-//         const newSkillTags = req.body.tagIds
-//             .filter((tag_id) => !skillTagIds.includes(tag_id))
-//             .map((tag_id) => {
-//                 return {
-//                     user_id: req.params.id,
-//                     tag_id,
-//                 };
-//             });
-//             console.log(skillTags);
-//             const skillTagsToRemove = skillTags
-//                 .filter((tag_id) => !req.body.tagIds.includes(tag_id))
-//                 .map(({ id }) => id);
-
-//             return Promise.all([
-//                 SkillTag.destroy({ where: { id: skillTagsToRemove } }),
-//                 SkillTag.bulkCreate(newSkillTags),
-//             ]);
-//         })
-//         .then((updatedSkillTags) => res.json(updatedSkillTags))
-//         .catch((err) => {
-//             res.status(400).json(err);
-//         });
-//     });
-
+//Update User
 router.put('/:id', (req, res) => {
-// update product data
 User.update(req.body, {
     where: {
     id: req.params.id,
     },
 })
     .then((user) => {
-    // find all associated tags from ProductTag
     return SkillTag.findAll({ where: { user_id: req.params.id } });
     })
     .then((skillTags) => {
-    // get list of current tag_ids
     const skillTagIds = skillTags.map(({ tag_id }) => tag_id);
-    // create filtered list of new tag_ids
     const newSkillTags = req.body.tagIds
         .filter((tag_id) => !skillTagIds.includes(tag_id))
         .map((tag_id) => {
@@ -125,12 +81,10 @@ User.update(req.body, {
             tag_id,
         };
         });
-    // figure out which ones to remove
     const skillTagsToRemove = skillTags
         .filter(({ tag_id }) => !req.body.tagIds.includes(tag_id))
         .map(({ id }) => id);
 
-    // run both actions
     return Promise.all([
         SkillTag.destroy({ where: { id: skillTagsToRemove } }),
         SkillTag.bulkCreate(newSkillTags),
@@ -138,7 +92,6 @@ User.update(req.body, {
     })
     .then((updatedSkillTags) => res.json(updatedSkillTags))
     .catch((err) => {
-    // console.log(err);
     res.status(400).json(err);
     });
 });

@@ -13,7 +13,7 @@ app.set("view engine", "handlebars");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-// app.use(express.static("public"));
+app.use(express.static("public"));
 //Setup routes to the Server
 //Look at /controllers folder
 app.use("/", routes);
