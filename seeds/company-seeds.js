@@ -2,14 +2,14 @@ const { Company } = require('../models');
 
 const companyData = [
     {
-    company_na: "Rhyzio",
-    company_ema: "ewoodage0@com.com",
-    company_pho: "(395) 9036678"
+    company_name: "Rhyzio",
+    company_email: "ewoodage0@com.com",
+    company_phone: "(395) 9036678"
     }, 
     {
-    company_nam: "Photospace",
-    company_emai: "mhordell1@va.gov",
-    company_phon: "(729) 8959180"
+    company_name: "Photospace",
+    company_email: "mhordell1@va.gov",
+    company_phone: "(729) 8959180"
     }, 
     {
     company_name: "Meembee",
