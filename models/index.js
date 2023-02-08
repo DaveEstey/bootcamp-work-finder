@@ -3,6 +3,7 @@ const JobPosting = require('./JobPosting');
 const Tag = require('./Tag');
 const Company = require('./Company');
 const SkillTag = require('./SkillTag');
+const JobTag = require('./JobTag');
 
 JobPosting.belongsTo(Company, {
     foreignKey: 'company_id',
@@ -14,15 +15,15 @@ Company.hasMany(JobPosting, {
     onDelete: 'CASCADE'
 });
 
-Company.belongsToMany(Tag, {
+JobPosting.belongsToMany(Tag, {
     through: {
-        model: SkillTag
+        model: JobTag
     }
 });
 
-Tag.belongsToMany(Company, {
+Tag.belongsToMany(JobPosting, {
     through: {
-        model: SkillTag
+        model: JobTag
     }
 });
 
@@ -45,5 +46,6 @@ module.exports = {
     JobPosting,
     Tag,
     Company,
-    SkillTag
+    SkillTag,
+    JobTag
  };

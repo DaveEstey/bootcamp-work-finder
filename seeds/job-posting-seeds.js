@@ -71,3 +71,5 @@ const jobPostingData = [
         company_id: 7
       }
 ];
+const seedJobPostings = () => JobPosting.bulkCreate(jobPostingData);
+module.exports = seedJobPostings;

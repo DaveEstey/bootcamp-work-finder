@@ -63,5 +63,5 @@ const companyData = [
     }
 ];
 
-const seedCompany = () => Company.bulkCreate(companyData);
-module.exports = seedCompany;
+const seedCompanies = () => Company.bulkCreate(companyData);
+module.exports = seedCompanies;
