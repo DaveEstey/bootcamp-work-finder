@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
             include: [
                 {
                     model: JobPosting,
-                    attributes: ['job_title', 'job_description', 'salary']
+                    attributes: ['id', 'job_title', 'job_description', 'salary']
                 }],
         });
         res.status(200).json(companies);
@@ -24,7 +24,7 @@ router.get('/:id', async (req, res) => {
             include: [
                 {
                     model: JobPosting,
-                    attributes: ['job_title', 'job_description','salary']
+                    attributes: ['id', 'job_title', 'job_description','salary']
                 }],
         });
         if (!company) {
@@ -51,9 +51,9 @@ router.post('/', async (req, res) => {
 /* 
 Example:
 {
-    company_name: 'Company Name',
-    company_email: 'lyhxr@example.com',
-    company_phone: '1234567890',
+    "company_name": "Company Name",
+    "company_email": "lyhxr@example.com",
+    "company_phone": "1234567890"
 }
 */
 
