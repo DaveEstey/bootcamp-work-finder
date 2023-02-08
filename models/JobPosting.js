@@ -29,7 +29,6 @@ Posting.init(
     date_posted: {
         type: DataTypes.DATE,
         defaultValue: DataTypes.NOW,
-        allowNull: false
     },
     company_id: {
         type: DataTypes.INTEGER,
