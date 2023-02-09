@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class SkillTag extends Model {}
+class JobTag extends Model {}
 
-SkillTag.init(
+JobTag.init(
   {
     id: {
         type: DataTypes.INTEGER,
@@ -11,13 +11,13 @@ SkillTag.init(
         primaryKey: true,
         autoIncrement: true
     },
-    user_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        references: {
-            model: 'user',
-            key: 'id'
-        }
+    posting_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            references: {
+                model:'posting',
+                key:'id'
+            }
     },
     tag_id: {
         type: DataTypes.INTEGER,
@@ -33,8 +33,8 @@ SkillTag.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName:'skill_tag'
+    modelName:'job_tag'
   }
 );
 
-module.exports = SkillTag;
+module.exports = JobTag;
