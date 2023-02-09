@@ -12,9 +12,6 @@ router.get('/', async (req, res) => {
                 }],
             });
             res.status(200).json(jobPostings);
-            console.log(jobPostings);
-            console.log('User Data Collected');
-
     } catch (err) {
         res.status(500).json(err);
         console.log(err);
@@ -96,6 +93,7 @@ router.put('/:id', (req, res) => {
         .then((updatedJobTags) => res.json(updatedJobTags))
         .catch((err) => {
         res.status(400).json(err);
+        console.log(err);
         });
     });
 
