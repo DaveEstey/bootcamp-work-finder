@@ -24,8 +24,11 @@ router.get('/:id', async (req, res) => {
         const jobPosting = await JobPosting.findByPk(req.params.id, {
             include: [
                 {
-                    model: Tag,
                     model: Company,
+                    attributes: ['id','company_name'],
+                },
+                {
+                    model: Tag
                 }],
             });
             if (!jobPosting) {
