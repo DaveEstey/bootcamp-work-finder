@@ -1,5 +1,5 @@
-html,
-body {
+/* Element Style */
+* {
   margin: 0;
   padding: 0;
 }
@@ -8,6 +8,13 @@ h1 {
   font-size: 20px;
 }
 
+footer {
+  text-align: center;
+  color: black;
+  margin-top: 10px;
+}
+
+/* id and Class Styling */
 
 #sign_up {
   background-image: url('https://user-images.githubusercontent.com/112873819/217618270-69dd434f-89ad-427c-ae54-f97735c1a1bb.jpg');
@@ -20,7 +27,6 @@ h1 {
 }
 
 .create-account {
-
   background-color: hsla(201, 15%, 66%, 0.6);
   padding: 30px;
   margin-right: 200px;
@@ -32,20 +38,19 @@ h1 {
   border-radius: 10px;
 }
 
-.intro {
-  color: rgb(240, 240, 240);
+.info {
+  color: #7FE9DE;
   margin-top: 200px;
-  padding-left: 200px;
+  padding-left: 150px;
   font-size: 3em;
-
 }
 
 
 .container-2 {
+  background-color: azure;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  background-color: #ECECEC;
   height: 200px;
   width: 100%;
   color: rgb(8, 8, 8);
@@ -68,7 +73,6 @@ h1 {
 }
 
 .login-account {
-
   background-color: hsla(200, 12%, 25%, 0.6);
   color: white;
   padding: 50px;
@@ -77,4 +81,50 @@ h1 {
   width: 20%;
   max-width: 600px;
   border-radius: 10px;
+}
+
+.jobs-box {
+  border: 2px black solid;
+}
+
+.jobSearch {
+  padding-top: 100px;
+  align-items: center;
+}
+
+.searchInput {
+  width: 500px;
+  margin-left: 450px;
+  padding-bottom: 50px;
+}
+
+.form-bg {
+  background-color: hsla(200, 12%, 25%, 0.6);
+  color: white;
+  padding: 40px;
+  margin-top: 150px;
+  height: 700px;
+  min-width: 400px;
+  width: 1000px;
+  border-radius: 10px;
+}
+
+.container-3-5 {
+  text-align: center;
+
+}
+
+.container-4 {
+  background-color: azure;
+  padding: 20px 0;
+}
+
+.demand-job-title {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.demand-job {
+  background-color: aquamarine;
+  margin: 20px 100px;
 }

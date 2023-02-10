@@ -29,11 +29,11 @@
                 <a class="navbar-item" href="/postjob">
                     Post a Job
                 </a>
-                <a class="navbar-item">
-                    Companies Review
+                <a class="navbar-item" href="/contactus">
+                    Contact
                 </a>
             </div>
-
+            {{!-- sign up & log in btn --}}
             <div class="navbar-end">
                 <div class="navbar-item">
                     <div class="buttons">
@@ -46,45 +46,45 @@
     </nav>
 </header>
 
-
 {{!-- create a account --}}
 <section id="sign_up">
-    <div class="container intro">
-        <h2>Welcome to BootCamp-Work-Finder</h2>
-        <h3>Your Dream Job is Waiting </h3>
+    <div class="container info">
+        <h2 class=" has-text-weight-bold">Welcome to BootCamp-Work-Finder</h2>
+        <h3 class=" has-text-weight-bold">Find Your Dream Job </h3>
     </div>
+    {{!-- Sign up form --}}
     <div class="create-account">
         <form>
             <div class="title has-text-black">
                 <h2> Create Account</h2>
             </div>
+            {{!-- First name --}}
             <div class="field has-text-black">
                 <label for="name">First Name</label>
                 <input class="input is-primary" name="first-name" type="text" placeholder="First Name">
             </div>
+            {{!-- Last name --}}
             <div class="field has-text-black">
                 <label for="name">Last Name</label>
                 <input class="input is-primary" name="last-name" type="text" placeholder="Last Name">
             </div>
+            {{!-- email --}}
             <div class="field has-text-black">
                 <label for="email">Email</label>
                 <input class="input is-primary" name="Email" type="text" placeholder="Email address">
             </div>
-
+            {{!-- password --}}
             <div class="field has-text-black">
                 <label for="Name">Password</label>
                 <input class="input is-primary" name="password" type="password" placeholder="Password">
             </div>
-
+            {{!-- sign up btn --}}
             <div class="field mt-6">
                 <button class="button is-primary is-fullwidth" type="submit">Sign Up</button>
             </div>
-
-
         </form>
     </div>
 </section>
-
 
 {{!-- text container --}}
 <div class="container-2">
@@ -93,10 +93,110 @@
                 width="50" height="28"></p>
     </div>
     <div>
-        <h1>Looking for the job or post a job?</h1>
+        <h1 class="is-size-4 is-italic has-text-weight-semibold">Looking for the job or post a job?</h1>
         <br>
-        <h1>Sign up to get access to free job search tools in one place</h1>
+        <h1 class="is-size-4 is-italic has-text-weight-semibold">Sign up for an account to browse the job listings.</h1>
+    </div>
+</div>
+<hr>
+
+{{!-- Information about website --}}
+<div class="container-3-5">
+    <h1 class="is-size-2 has-text-weight-bold">We help you to find the right job!</h1>
+    <br>
+    <h2 class="has-text-weight-semibold">✔️BootCamp-Work-Finder website is free tools and an online platform that
+        connects
+        job seekers with employers
+        looking to fill positions.</h2><br>
+    <h2 class="has-text-weight-semibold">✔️Connecting job seekers with top employers.</h2><br>
+
+    <h2 class="has-text-weight-semibold">✔️Job seekers can create a profile and search for job openings that match their
+        skills and experience.</h2><br>
+
+    <h2 class="has-text-weight-semibold">✔️Employers can post job listings and search for qualified candidates through
+        our
+        website.</h2><br>
+</div>
+<hr>
+
+{{!-- Demand Jobs --}}
+{{!-- we can change the demand jobs --}}
+<div class="container-4">
+    <h1 class="is-size-4 has-text-weight-bold demand-job-title is-underlined">Most Demand Jobs</h1>
+    <div class="columns is-justify-content-center">
+        <div class="column is-narrow demand-job">
+            Full Stack Developer
+        </div>
+        <div class="column is-narrow demand-job">
+            Senior Developer
+        </div>
+        <div class="column is-narrow demand-job">
+            Junior Developer
+        </div>
+    </div>
+    <div class="columns is-justify-content-center">
+
+        <div class="column is-narrow demand-job">
+            Back-end Developer
+        </div>
+        <div class="column is-narrow demand-job">
+            front-end Developer
+        </div>
+        <div class="column is-narrow demand-job">
+            Data Analytics
+        </div>
     </div>
 
-
 </div>
+<hr>
+
+{{!-- job search strategies --}}
+<div class="container-3-5">
+    <h1 class="is-size-2 has-text-weight-bold is-underlined">Job Search strategies</h1>
+    <br>
+    <h2 class="has-text-weight-semibold">✔️Networking: Networking is a powerful tool for finding job opportunities.
+        Reach
+        out to friends, former colleagues, and professionals in your field to let them know you are job searching.
+        Attend
+        industry events and join professional organizations to expand your network.
+        looking to fill positions.</h2><br>
+    <h2 class="has-text-weight-semibold">✔️Online job search: Utilize job search websites, to find job listings that
+        match
+        your skills and experience. Create a strong profile and keep your resume up-to-date to increase your visibility
+        to
+        potential employers.</h2><br>
+
+    <h2 class="has-text-weight-semibold">✔️Company research: Research companies that interest you to find out what they
+        do, what their culture is like, and what job opportunities they have available. This information can help you
+        tailor
+        your resume and cover letter, and prepare for interviews..</h2><br>
+
+
+    <h2 class="has-text-weight-semibold">✔️Tailored applications: Instead of using a generic resume and cover letter,
+        tailor your application materials to the specific job and company you are applying to. This can help demonstrate
+        your interest in the position and increase your chances of getting hired.</h2><br>
+
+    <h2 class="has-text-weight-semibold">✔️Follow up: After you have applied for a job, follow up with the employer to
+        inquire about the status of your application. This can show your interest in the position and can also give you
+        an
+        opportunity to learn more about the company.</h2><br>
+
+    <h2 class="has-text-weight-semibold">✔️Stay positive: Job searching can be a long and sometimes frustrating process,
+        but it's important to stay positive and motivated. Surround yourself with positive people, set achievable goals,
+        and
+        take breaks when you need them.</h2><br>
+
+    <h2 class="has-text-weight-semibold">By following these strategies, you can increase your chances of finding the
+        right
+        job and making a successful career move.
+        Regenerate response.</h2><br>
+</div>
+<hr>
+
+{{!-- footer --}}
+<footer class="footer p-2">
+    <h2>Thank you for visiting</h2>
+    <p>
+        &copy; 2023 copyright all right reserved
+    </p>
+</footer>
