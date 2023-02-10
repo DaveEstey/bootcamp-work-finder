@@ -1,0 +1,74 @@
+{{!-- nav bar --}}
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    {{!-- website logo --}}
+    <a class="navbar-item">
+      <img src="https://user-images.githubusercontent.com/112873819/217544805-69375c09-7c39-4b30-be45-d8dee65de5b9.png"
+        width="50" height="28">
+    </a>
+
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  {{!-- nav bar buttons --}}
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item" href="/findjobs">
+        Find Jobs
+      </a>
+
+      <a class="navbar-item" href=" /login">
+        Jobs
+      </a>
+      <a class="navbar-item">
+        Post a Job
+      </a>
+      <a class="navbar-item">
+        Companies Review
+      </a>
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          <a class="button is-light" href="/logout">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+{{!-- job search field --}}
+<div class="jobSearch">
+  <div class="field is-grouped searchInput">
+    <p class="control is-expanded">
+      <input class="input is-normal " type="text" placeholder="Find a repository">
+    </p>
+    <p class="control">
+      <a class="button is-info">
+        Search
+      </a>
+    </p>
+  </div>
+
+  {{!-- display searched jobs --}}
+
+  {{#each job}}
+  <div class="column">
+    <div class="box has-background-white has-text-centered has-text-black">
+
+    </div>
+    {{/each}}
+
+
+
+
+
+  </div>
+
+
+</div>
