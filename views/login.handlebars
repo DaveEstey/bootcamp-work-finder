@@ -1,0 +1,73 @@
+{{!-- nav bar --}}
+<nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+
+        {{!-- website logo --}}
+        <a class="navbar-item">
+            <img src="https://user-images.githubusercontent.com/112873819/217544805-69375c09-7c39-4b30-be45-d8dee65de5b9.png"
+                width="50" height="28">
+        </a>
+
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+    </div>
+
+    <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+
+            <a class="navbar-item">
+                Post a Job
+            </a>
+            <a class="navbar-item">
+                Companies Review
+            </a>
+        </div>
+
+        <div class="navbar-end">
+            <div class="navbar-item">
+                <div class="buttons">
+                    <a class="button is-primary" href="/">Sign up</a>
+                    <a class="button is-light" href="/login">Log in</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+{{!-- log in --}}
+<section class="hero is-fullheight login-bg">
+    <div class="login-account">
+        <form>
+            <div class="title">
+                <h2 class="has-text-white"> Log in</h2>
+            </div>
+
+            <div class="field">
+                <label for="email">Email</label>
+                <input class="input is-primary" name="Email" type="text" placeholder="Email address">
+            </div>
+
+            <div class="field">
+                <label for="Name">Password</label>
+                <input class="input is-primary" name="password" type="password" placeholder="Password">
+            </div>
+
+            <div class="field mt-6">
+                <button class="button is-black is-fullwidth" type="submit">Log in</button>
+            </div>
+            <div class="has-text-centered">
+                <p class="is-size-7"> Don't have an account? <a href="/" class="has-text-primary">Sign
+                        up</a>
+                </p>
+            </div>
+
+
+        </form>
+
+    </div>
+
+    </div>
+</section>
