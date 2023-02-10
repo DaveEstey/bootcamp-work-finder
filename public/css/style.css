@@ -1,8 +1,80 @@
-h1 {
-  font-size: medium;
+html,
+body {
+  margin: 0;
+  padding: 0;
 }
 
-p {
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+h1 {
+  font-size: 20px;
+}
+
+
+#sign_up {
+  background-image: url('https://user-images.githubusercontent.com/112873819/217618270-69dd434f-89ad-427c-ae54-f97735c1a1bb.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 700px;
+  display: flex;
+  flex-direction: row;
+}
+
+.create-account {
+
+  background-color: hsla(201, 15%, 66%, 0.6);
+  padding: 30px;
+  margin-right: 200px;
+  margin-top: 150px;
+  height: 500px;
+  min-width: 400px;
+  width: 20%;
+  max-width: 600px;
+  border-radius: 10px;
+}
+
+.intro {
+  color: rgb(240, 240, 240);
+  margin-top: 200px;
+  padding-left: 200px;
+  font-size: 3em;
+
+}
+
+
+.container-2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: #ECECEC;
+  height: 200px;
+  width: 100%;
+  color: rgb(8, 8, 8);
+  padding-top: 50px;
+}
+
+.job-img {
+  padding-top: 20px;
+  padding-right: 20px;
+}
+
+.login-bg {
+  background-image: url('https://user-images.githubusercontent.com/112873819/217674156-3dd16b5e-0d14-4066-a021-c0d89f36da46.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-account {
+
+  background-color: hsla(200, 12%, 25%, 0.6);
+  color: white;
+  padding: 50px;
+  height: 500px;
+  min-width: 400px;
+  width: 20%;
+  max-width: 600px;
+  border-radius: 10px;
 }
