@@ -57,18 +57,21 @@
 
   {{!-- display searched jobs --}}
 
-  {{#each job}}
-  <div class="column">
-    <div class="box has-background-white has-text-centered has-text-black">
-
-    </div>
-    {{/each}}
-
-
-
-
-
+  {{#each plainJobPostings as |job| }}
+  <div class="box has-background-white has-text-centered has-text-black jobs-box">
+    <h1>{{this.job_title}}</h1>
+    <h2>{{this.company.company_name}}</h2>
+    <p>{{this.company.company_email}}</p>
+    <p>{{this.salary}}</p>
+    <p>{{this.job_description}}</p>
   </div>
+  {{/each}}
+
+
+
+
+
+</div>
 
 
 </div>
