@@ -28,6 +28,10 @@ app.use(session({
     saveUninitialized: true
 }));
 
+// passport init 
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 
 
