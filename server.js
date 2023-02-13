@@ -5,7 +5,7 @@ const routes = require("./controllers");
 const passport = require('passport');
 //TODO: Uncomment to make use of database, once set up
 const sequelize = require('./config/connection');
-// for env 
+// for session env 
 require('dotenv').config();
 
 const app = express();
@@ -21,14 +21,14 @@ app.use(express.static("public"));
 //Look at /controllers folder
 app.use("/", routes);
 
-// express session secret key | For passport
+// configure express-session| For passport
 app.use(session({
     secret: process.env.secret,
     resave: true,
     saveUninitialized: true
 }));
 
-// passport init 
+// initialize passport
 app.use(passport.initialize());
 app.use(passport.session());
 
