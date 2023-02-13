@@ -23,7 +23,7 @@ app.use("/", routes);
 
 // configure express-session| For passport
 app.use(session({
-    secret: process.env.secret,
+    secret: 'good secret',
     resave: true,
     saveUninitialized: true
 }));
