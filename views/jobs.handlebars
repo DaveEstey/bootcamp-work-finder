@@ -4,7 +4,7 @@
     <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
             {{!-- website logo --}}
-            <a class="navbar-item">
+            <a class="navbar-item" href="/">
                 <img src="https://user-images.githubusercontent.com/112873819/217544805-69375c09-7c39-4b30-be45-d8dee65de5b9.png"
                     width="50" height="28">
             </a>
@@ -45,48 +45,52 @@
     </nav>
 </header>
 
-
-{{!-- hard coded data..will be replace with db data --}}
-<div class="column">
-    <div class="box has-background-white has-text-centered has-text-black jobs-box">
-        <h1>Full-Stack Developer</h1>
-        <h2>UNB</h2>
-        <p>UNB@gmail.com</p>
-        <p>$5000</p>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Inventore doloremque nobis minima assumenda
-            aut
-            autem expedita quidem? Provident, dolorum. Maxime voluptatem illum laboriosam et, reiciendis asperiores?
-            Mollitia corporis at nulla.</p>
-    </div>
-    <div class="box has-background-white has-text-centered has-text-black jobs-box">
-        <h1>Full-Stack Developer</h1>
-        <h2>UNB</h2>
-        <p>UNB@gmail.com</p>
-        <p>$5000</p>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Inventore doloremque nobis minima assumenda aut
-            autem expedita quidem? Provident, dolorum. Maxime voluptatem illum laboriosam et, reiciendis asperiores?
-            Mollitia corporis at nulla.</p>
-    </div>
-    <div class="box has-background-white has-text-centered has-text-black jobs-box">
-        <h1>Full-Stack Developer</h1>
-        <h2>UNB</h2>
-        <p>UNB@gmail.com</p>
-        <p>$5000</p>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Inventore doloremque nobis minima assumenda aut
-            autem expedita quidem? Provident, dolorum. Maxime voluptatem illum laboriosam et, reiciendis asperiores?
-            Mollitia corporis at nulla.</p>
-    </div>
-    <div class="box has-background-white has-text-centered has-text-black jobs-box">
-        <h1>Full-Stack Developer</h1>
-        <h2>UNB</h2>
-        <p>UNB@gmail.com</p>
-        <p>$5000</p>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Inventore doloremque nobis minima assumenda aut
-            autem expedita quidem? Provident, dolorum. Maxime voluptatem illum laboriosam et, reiciendis asperiores?
-            Mollitia corporis at nulla.</p>
-    </div>
-
-
-
-
+ <div class="column">
+        {{#each plainJobPostings as |job| }}
+        <div class="box has-background-white has-text-centered has-text-black jobs-box">
+    <h1>{{this.job_title}}</h1>
+    <h2>{{this.company.company_name}}</h2>
+    <p>{{this.company.company_email}}</p>
+    <p>{{this.salary}}</p>
+    <p>{{this.job_description}}</p>
 </div>
+        {{/each}}
+{{!-- hard coded data..will be replace with db data --}}
+{{!--
+<div class="box has-background-white has-text-centered has-text-black jobs-box">
+    <h1>Full-Stack Developer</h1>
+    <h2>UNB</h2>
+    <p>UNB@gmail.com</p>
+    <p>$5000</p>
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Inventore doloremque nobis minima assumenda
+        aut
+        autem expedita quidem? Provident, dolorum. Maxime voluptatem illum laboriosam et, reiciendis asperiores?
+        Mollitia corporis at nulla.</p>
+</div>
+<div class="box has-background-white has-text-centered has-text-black jobs-box">
+    <h1>Full-Stack Developer</h1>
+    <h2>UNB</h2>
+    <p>UNB@gmail.com</p>
+    <p>$5000</p>
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Inventore doloremque nobis minima assumenda aut
+        autem expedita quidem? Provident, dolorum. Maxime voluptatem illum laboriosam et, reiciendis asperiores?
+        Mollitia corporis at nulla.</p>
+</div>
+<div class="box has-background-white has-text-centered has-text-black jobs-box">
+    <h1>Full-Stack Developer</h1>
+    <h2>UNB</h2>
+    <p>UNB@gmail.com</p>
+    <p>$5000</p>
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Inventore doloremque nobis minima assumenda aut
+        autem expedita quidem? Provident, dolorum. Maxime voluptatem illum laboriosam et, reiciendis asperiores?
+        Mollitia corporis at nulla.</p>
+</div>
+<div class="box has-background-white has-text-centered has-text-black jobs-box">
+    <h1>Full-Stack Developer</h1>
+    <h2>UNB</h2>
+    <p>UNB@gmail.com</p>
+    <p>$5000</p>
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Inventore doloremque nobis minima assumenda aut
+        autem expedita quidem? Provident, dolorum. Maxime voluptatem illum laboriosam et, reiciendis asperiores?
+        Mollitia corporis at nulla.</p> --}}
+   

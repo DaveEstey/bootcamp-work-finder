@@ -27,8 +27,7 @@ User.init(
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
-                min: 6,
-                max: 12
+                min: 6
             }
         },
         user_firstName: {
