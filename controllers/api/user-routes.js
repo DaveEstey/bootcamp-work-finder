@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const { User, Tag, SkillTag } = require("../../models");
 
+
 //Get all users
 router.get('/', async (req, res) => {
     try {
@@ -52,7 +53,7 @@ router.post('/', async (req, res) => {
     } catch (err) {
         console.log(err)
         res.status(400).json(err);
-    } 
+    }
 });
 
 
