@@ -1,57 +1,10 @@
-{{!-- nav bar --}}
-<header>
-    {{!-- nav bar --}}
-    <nav class="navbar" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand">
-            {{!-- website logo --}}
-            <a class="navbar-item" href="/">
-                <img src="https://user-images.githubusercontent.com/112873819/217544805-69375c09-7c39-4b30-be45-d8dee65de5b9.png"
-                    width="50" height="28">
-            </a>
-
-            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
-                data-target="navbarBasicExample">
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-            </a>
-        </div>
-        {{!-- nav bar buttons --}}
-        <div id="navbarBasicExample" class="navbar-menu">
-            <div class="navbar-start">
-                <a class="navbar-item" href="/findjobs">
-                    Find Jobs
-                </a>
-
-                <a class="navbar-item" href=" /login">
-                    Jobs
-                </a>
-                <a class="navbar-item" href="postjob">
-                    Post a Job
-                </a>
-                <a class="navbar-item" href="/contactus">
-                    Contact
-                </a>
-            </div>
-
-            <div class="navbar-end">
-                <div class="navbar-item">
-                    <div class="buttons">
-                        <a class="button is-light" href="/logout">Logout</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </nav>
-</header>
-
- <div class="column">
+    <div class="column">
         {{#each plainJobPostings as |job| }}
         <div class="box has-background-white has-text-centered has-text-black jobs-box">
     <h1>{{this.job_title}}</h1>
     <h2>{{this.company.company_name}}</h2>
     <p>{{this.company.company_email}}</p>
-    <p>{{this.salary}}</p>
+    <p>${{this.salary}}</p>
     <p>{{this.job_description}}</p>
 </div>
         {{/each}}
