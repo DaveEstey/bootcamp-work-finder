@@ -1,63 +1,63 @@
 const { JobPosting } = require('../models');
 const jobPostingData = [
-    {
-        job_title: "Internal Auditor",
-        job_description: "This is a test job posting",
-        salary: 77253.81,
+      {
+        job_title: "SEO Consultant",
+        job_description: "Tasks: You’ll spend your time working to gain inbound links to increase traffic, optimize copy and metadata for SEO, create high-impact stories and headlines.",
+        salary: 10200,
         company_id: 12
       }, 
       {
-        job_title: "GIS Technical Architect",
-        job_description: "This is a test",
-        salary: 78346.01,
+        job_title: "WEB Analytics Developer",
+        job_description: "Tasks: You’ll collect, measure, and analyze data (like web traffic, acquisition, and conversion) so you can make    sense of how people are using the web (and how to optimize sites based on that data).",
+        salary: 100000,
         company_id: 1
       }, 
       {
-        job_title: "Senior Sales Associate",
-        job_description: "This is a test",
-        salary: 41002.73,
+        job_title: "Information Architect",
+        job_description: "Tasks: Information architect’s main jobs are to create site maps and user flows, define data flows/delivery, and research concept and usability testing.",
+        salary: 103000,
         company_id: 5
       }, 
       {
-        job_title: "Registered Nurse",
-        job_description: "This is a test",
-        salary: 69488.04,
+        job_title: "UX Designer",
+        job_description: "Tasks: If you get into UX design, your job will include developing prototypes, mocking up designs, designing specs, researching and analyzing user experience and behavior to iterate and traction test.",
+        salary: 97000,
         company_id: 6
       }, 
       {
-        job_title: "Assistant Media Planner",
-        job_description: "This is a test",
-        salary: 86232.11,
+        job_title: "UI Designer",
+        job_description: "Tasks: Your work as a UI designer will be to design site interfaces and graphics, do customer analysis, perform design research, and create branding and interactive and animated designs.",
+        salary: 92000,
         company_id: 2
       }, 
       {
-        job_title: "Office Assistant I",
-        job_description: "This is a test",
-        salary: 36622.91,
+        job_title: "Accessibility Specialist",
+        job_description: "Tasks: The kind of work you can expect as an accessibility specialist includes evaluating accessibility compliance; working with UX, UI, and product designers; and researching and testing products and services for accessibility.",
+        salary: 64000,
         company_id: 2
       }, 
       {
-        job_title: "General Manager",
-        job_description: "This is a test",
-        salary: 63381.97,
+        job_title: "Project Manager",
+        job_description: "Tasks: As a project manager, you will work with your team to create and maintain projects.",
+        salary: 125000,
         company_id: 7
       }, 
       {
-        job_title: "Information Systems Manager",
-        job_description: "This is a test",
-        salary: 51591.38,
+        job_title: "Frameworks Specialist",
+        job_description: "Tasks: If you’ve got frameworks down pat, you can use them as a specialist to design, prototype, and write code for web projects.",
+        salary: 102000,
         company_id: 12
       }, 
       {
-        job_title: "Electrical Engineer",
-        job_description: "This is a test",
-        salary: 39399.29,
+        job_title: "Full Stack Developer",
+        job_description: "Tasks: Covering the full-stack as a developer means building and managing platforms and working across teams to create projects, code projects, and manage databases.",
+        salary: 107000,
         company_id: 9
       }, 
       {
-        job_title: "Clinical Specialist",
-        job_description: "This is a test",
-        salary: 44042.53,
+        job_title: "Front End Developer",
+        job_description: "Tasks: Front-end development could be right for you if you like the idea of prototyping and building interactive sites, debugging across browsers, and managing user data.",
+        salary: 92000,
         company_id: 7
       }
 ];

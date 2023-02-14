@@ -53,8 +53,7 @@ router.post('/', async (req, res) => {
         console.log(err)
         res.status(400).json(err);
     } 
-       
-    });
+});
 
 
 /* if (req.body.tagIds.length) {
