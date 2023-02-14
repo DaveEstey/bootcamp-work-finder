@@ -26,7 +26,7 @@ const signUp = async (event) => {
 document.querySelector('#sign-up').addEventListener('click', signUp);
 
 const logOut = (event) => {
-    
+        
 }
 
 
