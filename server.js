@@ -3,6 +3,7 @@ const session = require("express-session");
 const exphbs = require("express-handlebars");
 const routes = require("./controllers");
 const passport = require('passport');
+// const flash = require('flash')
 //TODO: Uncomment to make use of database, once set up
 const sequelize = require('./config/connection');
 // for session env 
@@ -23,7 +24,7 @@ app.use("/", routes);
 
 // configure express-session| For passport
 app.use(session({
-    secret: 'good secret',
+    secret: process.env.SESSION_SECRET,
     resave: true,
     saveUninitialized: true
 }));
@@ -31,6 +32,8 @@ app.use(session({
 // initialize passport
 app.use(passport.initialize());
 app.use(passport.session());
+// initialize flash
+// app.use(flash());
 
 
 
