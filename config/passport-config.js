@@ -6,15 +6,16 @@ const { User } = require('../models')
 
 // set username Field to email
 passport.use(new localStrategy({
-    usernameField: 'email'
+    usernameField: 'user_email',
+    passwordField: 'user_password',
 },
-    function (email, password, done) {
-        User.findOne({ email: email }, function (err, user) {
+    function (user_email, user_password, done) {
+        User.findOne({ user_email: user_email }, function (err, user) {
             if (err) { return done(err); }
             if (!user) { return done(null, false, { message: 'No user with that email' }); }
 
             // check password using bcrypt
-            bcrypt.compare(password, user.password, function (err, res) {
+            bcrypt.compare(user_password, user.password, function (err, res) {
                 if (err) { return done(err); }
                 if (res === false) { return done(null, false, { message: 'password incorrect' }) }
                 return done(null, user);
