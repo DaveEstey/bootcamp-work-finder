@@ -3,7 +3,7 @@
 <div class="jobSearch">
   <div class="field is-grouped searchInput">
     <p class="control is-expanded">
-      <input class="input is-normal " type="text" placeholder="Find a repository">
+      <input class="input is-normal " type="text" placeholder="Find a job">
     </p>
     <p class="control">
       <a class="button is-info">
@@ -17,9 +17,9 @@
   {{#each plainJobPostings as |job| }}
   <div class="box has-background-white has-text-centered has-text-black jobs-box">
     <h1>{{this.job_title}}</h1>
-    <h2>{{this.company.company_name}}</h2>
-    <p>{{this.company.company_email}}</p>
-    <p>${{this.salary}}</p>
+    <h2>Company: {{this.company.company_name}}</h2>
+    <p>Email: {{this.company.company_email}}</p>
+    <p>Salary: ${{this.salary}}</p>
     <p>{{this.job_description}}</p>
   </div>
   {{/each}}
