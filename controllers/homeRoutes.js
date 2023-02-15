@@ -14,12 +14,30 @@ router.get('/login', async (req, res) => {
   res.render('login');
 });
 
-router.post('/login', passport.authenticate('local'),
-  function (req, res) {
-    console.log(res)
-    res.redirect(200, '/jobs');
+// router.post('/login', passport.authenticate('local',),
+//   function (req, res) {
+//     console.log(res)
+//     res.redirect(200, '/jobs');
 
-  });
+//   });
+
+
+router.post('/login', passport.authenticate('local', {
+  successRedirect: '/jobs',
+  failureRedirect: '/'
+}
+));
+
+
+function isLoggedIn(req, res, next) {
+  if (req.isAuthenticated())
+    return next();
+  res.redirect('/login');
+}
+
+
+
+
 
 
 
@@ -50,12 +68,12 @@ router.get('/findjobs', async (req, res) => {
   else {
     res.redirect('login')
   } 
-
+ 
   res.render('postjob')
-
+ 
 });
  */
-router.get('/jobs', async (req, res) => {
+router.get('/jobs', isLoggedIn, async (req, res) => {
   try {
     const jobPostings = await JobPosting.findAll({
       include: [
@@ -85,21 +103,21 @@ router.get('/skills/:id', async (req, res) => {
         {
           model: Tag
         }],
-      });
-      const excludedTags = userData.tags.map((excluded) => excluded.get(userData.tags.id));
-      console.log(excludedTags);
-      const excludedArr = [];
-      excludedTags.forEach(element => {
-        excludedArr.push(element.id);
-      });
-      const tagData = await Tag.findAll({
-        where: {
-          id: {
-            [Op.not]: excludedArr
-          }
+    });
+    const excludedTags = userData.tags.map((excluded) => excluded.get(userData.tags.id));
+    console.log(excludedTags);
+    const excludedArr = [];
+    excludedTags.forEach(element => {
+      excludedArr.push(element.id);
+    });
+    const tagData = await Tag.findAll({
+      where: {
+        id: {
+          [Op.not]: excludedArr
         }
-      });
-    res.status(200).json({userData, tagData});
+      }
+    });
+    res.status(200).json({ userData, tagData });
   } catch (err) {
     res.status(500).json(err);
     console.log(err);
