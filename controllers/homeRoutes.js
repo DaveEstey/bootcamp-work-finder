@@ -13,9 +13,10 @@ router.get('/login', async (req, res) => {
   res.render('login');
 });
 
-router.post('/login', passport.authenticate('local', { failureRedirect: '/login', }),
+router.post('/login', passport.authenticate('local'),
   function (req, res) {
-    res.redirect('/jobs', { logged_in: req.session.logged_in });
+    console.log(res)
+    res.redirect(200, '/jobs');
 
   });
 

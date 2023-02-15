@@ -20,7 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 //Setup routes to the Server
 //Look at /controllers folder
-app.use("/", routes);
+
 
 // configure express-session| For passport
 app.use(session({
@@ -30,12 +30,13 @@ app.use(session({
 }));
 
 // initialize passport
-app.use(passport.initialize());
 app.use(passport.session());
+app.use(passport.initialize());
+
 // initialize flash
 // app.use(flash());
 
-
+app.use("/", routes);
 
 
 //TODO: Uncomment to make use of database, once set up
