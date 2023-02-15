@@ -10,15 +10,45 @@ passport.use(new localStrategy({
     passwordField: 'user_password',
 },
     function (user_email, user_password, done) {
-        User.findOne({ user_email: user_email }, function (err, user) {
+        console.log(user_email)
+        console.log(user_password)
+        User.findOne({ where: { user_email }, raw: true }).then(function (user, err) {
+            console.log(user);
             if (err) { return done(err); }
+
             if (!user) { return done(null, false, { message: 'No user with that email' }); }
+            console.log(user_password);
+
+
+
+
 
             // check password using bcrypt
-            bcrypt.compare(user_password, user.password, function (err, res) {
+            bcrypt.compare(user_password, user.user_password, function (err, res) {
+                console.log(res)
                 if (err) { return done(err); }
                 if (res === false) { return done(null, false, { message: 'password incorrect' }) }
                 return done(null, user);
+            })
+        })
+        return
+        User.findOne({ where: { user_email } }, function (err, user) {
+            console.log(user);
+            if (err) { return done(err); }
+
+            if (!user) { return done(null, false, { message: 'No user with that email' }); }
+            console.log(user_password);
+            console.log(user.password);
+
+
+            if (!user.verifyPassword(user_password)) { return done(null, false); }
+
+            // check password using bcrypt
+            bcrypt.compare(user_password, user.password, function (err, res) {
+                console.log(res)
+                if (err) { return done(err); }
+                if (res === false) { return done(null, false, { message: 'password incorrect' }) }
+
             })
         });
     }));
