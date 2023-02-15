@@ -1,7 +1,8 @@
 const router = require('express').Router();
-const { JobPosting, Tag, Company } = require('../models');
-const withAuth = require('../config/auth')
-const passport = require('../config/passport-config')
+const { JobPosting, Tag, Company, User, SkillTag } = require('../models');
+const withAuth = require('../config/auth');
+const passport = require('../config/passport-config');
+const { Op } = require("sequelize");
 
 router.get('/', async (req, res) => {
   // Send the rendered Handlebars.js template back as the response
@@ -13,9 +14,10 @@ router.get('/login', async (req, res) => {
   res.render('login');
 });
 
-router.post('/login', passport.authenticate('local', { failureRedirect: '/login', }),
+router.post('/login', passport.authenticate('local'),
   function (req, res) {
-    res.redirect('/jobs', { logged_in: req.session.logged_in });
+    console.log(res)
+    res.redirect(200, '/jobs');
 
   });
 
@@ -71,14 +73,37 @@ router.get('/jobs', async (req, res) => {
   }
 });
 
-
-
 router.get('/contactus', async (req, res) => {
   // Send the rendered Handlebars.js template back as the response
   res.render('contactus');
 });
 
-
-
+router.get('/skills/:id', async (req, res) => {
+  try {
+    const userData = await User.findByPk(req.params.id, {
+      include: [
+        {
+          model: Tag
+        }],
+      });
+      const excludedTags = userData.tags.map((excluded) => excluded.get(userData.tags.id));
+      console.log(excludedTags);
+      const excludedArr = [];
+      excludedTags.forEach(element => {
+        excludedArr.push(element.id);
+      });
+      const tagData = await Tag.findAll({
+        where: {
+          id: {
+            [Op.not]: excludedArr
+          }
+        }
+      });
+    res.status(200).json({userData, tagData});
+  } catch (err) {
+    res.status(500).json(err);
+    console.log(err);
+  }
+});
 
 module.exports = router;
