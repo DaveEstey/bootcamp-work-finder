@@ -70,7 +70,7 @@ router.get('/findjobs', withAuth, async (req, res) => {
 router.get('/login', async (req, res) => {
   if (req.session.loggedIn) {
     res.redirect('/findjobs');
-    return;   
+    return;
   }
   res.render('login');
 });
@@ -110,7 +110,6 @@ router.get('/jobs', async (req, res) => {
         }],
     });
     const plainJobPostings = jobPostings.map((data) => data.get({ plain: true }));
-    console.log(plainJobPostings)
     res.render('jobs', { plainJobPostings });
   } catch (err) {
     res.status(500).json(err);
@@ -132,60 +131,70 @@ router.get('/skills', withAuth, async (req, res) => {
         {
           model: Tag
         }],
-      });
-      const excludedTags = userData.tags.map((excluded) => excluded.get(userData.tags.id));
-      console.log(excludedTags);
-      const excludedArr = [];
-      excludedTags.forEach(element => {
-        excludedArr.push(element.id);
-      });
-      const tagData = await Tag.findAll({
-        where: {
-          id: {
-            [Op.not]: excludedArr
-          }
+    });
+    const excludedTags = userData.tags.map((excluded) => excluded.get(userData.tags.id));
+    console.log(excludedTags);
+    const excludedArr = [];
+    excludedTags.forEach(element => {
+      excludedArr.push(element.id);
+    });
+    const tagData = await Tag.findAll({
+      where: {
+        id: {
+          [Op.not]: excludedArr
         }
-      });
-    res.status(200).json({userData, tagData});
+      }
+    });
+    const userInfoData = await User.findByPk(req.session.user_id);
+
+    //Gives 'plain' versions of data to be used with Handlebars.
+    const userDataPlain = userInfoData.get({ plain: true })
+    const userTagsPlain = userData.tags.map((data) => data.get({ plain: true }));
+    const tagDataPlain = tagData.map((data) => data.get({ plain: true }));
+
+    res.status(200).render('skills', { tagDataPlain, userDataPlain, userTagsPlain });
+
   } catch (err) {
     res.status(500).json(err);
     console.log(err);
   }
 });
 
-  //Update a user's skills, used for the skills view.
-  router.put('/skills', async (req, res) => {
-    User.update(req.body, {
-      where: {
-          id: req.session.user_id,
-      },
+//Update a user's skills, used for the skills view.
+router.put('/skills', async (req, res) => {
+  User.update(req.body, {
+    where: {
+      id: req.session.user_id,
+    },
   })
-      .then((user) => {
-          return SkillTag.findAll({ where: { user_id: req.session.user_id } });
-      })
-      .then((skillTags) => {
-          const skillTagIds = skillTags.map(({ tag_id }) => tag_id);
-          const newSkillTags = req.body.tagIds
-              .filter((tag_id) => !skillTagIds.includes(tag_id))
-              .map((tag_id) => {
-                  return {
-                      user_id: req.session.user_id,
-                      tag_id,
-                  };
-              });
-          const skillTagsToRemove = skillTags
-              .filter(({ tag_id }) => !req.body.tagIds.includes(tag_id))
-              .map(({ id }) => id);
+    .then((user) => {
+      return SkillTag.findAll({ where: { user_id: req.session.user_id } });
+    })
+    .then((skillTags) => {
+      //console.log(skillTags);
+      const skillTagIds = skillTags.map(({ tag_id }) => tag_id);
+      
+      const newSkillTags = req.body.tagIds
+        .filter((tag_id) => !skillTagIds.includes(tag_id))
+        .map((tag_id) => {
+          return {
+            user_id: req.session.user_id,
+            tag_id,
+          };
+        });
+      const skillTagsToRemove = skillTags
+        .filter(({ tag_id }) => !req.body.tagIds.includes(tag_id))
+        .map(({ id }) => id);
 
-          return Promise.all([
-              SkillTag.destroy({ where: { id: skillTagsToRemove } }),
-              SkillTag.bulkCreate(newSkillTags),
-          ]);
-      })
-      .then((updatedSkillTags) => res.json(updatedSkillTags))
-      .catch((err) => {
-          res.status(400).json(err);
-      });
+      return Promise.all([
+        SkillTag.destroy({ where: { id: skillTagsToRemove } }),
+        SkillTag.bulkCreate(newSkillTags),
+      ]);
+    })
+    .then((updatedSkillTags) => res.json(updatedSkillTags))
+    .catch((err) => {
+      res.status(400).json(err);
+    });
 });
 //   User.update(req.body, {
 //     individualHooks: true,

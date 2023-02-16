@@ -1,4 +1,4 @@
-const { response } = require("express");
+
 
 const signUp = async (event) => {
     event.preventDefault();
@@ -25,7 +25,7 @@ const signUp = async (event) => {
     }
 };
 
-// document.querySelector('#sign-up').addEventListener('click', signUp);
+document.querySelector('#sign-up').addEventListener('click', signUp);
 
 
 
