@@ -34,8 +34,15 @@ passport.use(new localStrategy({
         return
         
     }));
-    // to retrieve the user's information from the session.
-    passport.deserializeUser((id, done) => { done(null, id) })    
-    
+
+// to store a user's information in the session
+passport.serializeUser((user, done) => { done(null, user.id) })
+
+// to retrieve the user's information from the session.
+passport.deserializeUser((id, done) => { done(null, id) })
+
+
+
+ 
 module.exports = passport;
 
