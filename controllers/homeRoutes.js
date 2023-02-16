@@ -110,7 +110,6 @@ router.get('/jobs', async (req, res) => {
         }],
     });
     const plainJobPostings = jobPostings.map((data) => data.get({ plain: true }));
-    console.log(plainJobPostings)
     res.render('jobs', { plainJobPostings });
   } catch (err) {
     res.status(500).json(err);
@@ -146,7 +145,14 @@ router.get('/skills', withAuth, async (req, res) => {
           }
         }
       });
-    res.status(200).json({userData, tagData});
+      const userData2 = await User.findByPk(req.session.user_id);
+     
+ 
+    const userData2Plain = userData2.get({plain: true})
+    const userDataPlain = userData.tags.map((data) => data.get({ plain: true }));
+    const tagDataPlain = tagData.map((data) => data.get({ plain: true })); 
+    console.log(userDataPlain)
+    res.status(200).render('skills', {tagDataPlain , userData2Plain , userDataPlain});
   } catch (err) {
     res.status(500).json(err);
     console.log(err);
