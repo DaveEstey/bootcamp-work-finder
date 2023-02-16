@@ -16,6 +16,11 @@ footer {
 
 /* id and Class Styling */
 
+
+#title {
+  display: none;
+}
+
 #sign_up {
   background-image: url('https://user-images.githubusercontent.com/112873819/217618270-69dd434f-89ad-427c-ae54-f97735c1a1bb.jpg');
   background-repeat: no-repeat;
@@ -24,14 +29,6 @@ footer {
   height: 700px;
   display: flex;
   flex-direction: row;
-}
-
-.welcome-text {
-  text-shadow:
-    1px 1px 2px black,
-    1px -1px 2px black,
-    -1px 1px 2px black,
-    -1px -1px 2px black;
 }
 
 .create-account {
@@ -46,11 +43,16 @@ footer {
   border-radius: 10px;
 }
 
-.info {
+.welcome-text {
   color: #7FE9DE;
   margin-top: 200px;
   padding-left: 150px;
   font-size: 3em;
+  text-shadow:
+    1px 1px 2px black,
+    1px -1px 2px black,
+    -1px 1px 2px black,
+    -1px -1px 2px black;
 }
 
 
@@ -135,4 +137,43 @@ footer {
 .demand-job {
   background-color: aquamarine;
   margin: 20px 100px;
+}
+
+
+/* ****************** nav-bar  ********************** */
+
+.toggler {
+  display: none;
+}
+
+
+@media screen and (max-width: 992px) {
+  .navbar .toggler:checked~.navbar-menu {
+    display: block;
+  }
+
+  /* don't display on mobile by default */
+  .navbar-menu {
+    display: none;
+  }
+}
+
+/* ****************** nav-bar  ********************** */
+
+@media screen and (max-width: 992px) {
+  .welcome-text {
+    display: none;
+  }
+
+  .create-account {
+    background-color: hsla(201, 15%, 66%, 0.6);
+    padding: 30px;
+    margin-top: 50px;
+    margin-left: 80px;
+  }
+
+  #title {
+    display: block;
+    margin-left: 10px;
+  }
 }
