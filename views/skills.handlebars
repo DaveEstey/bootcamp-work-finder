@@ -1,0 +1,24 @@
+    <div class="row">
+
+    
+    <div class="column">
+    <div class="box has-background-white has-text-centered has-text-black jobs-box">
+    <h1>USER: {{userDataPlain.user_firstName}} {{userDataPlain.user_lastName}}</h1>
+    <p>Email: {{userDataPlain.user_email}}</p> 
+    
+     {{#each userTagsPlain as |uTag|}}
+    <button class="skillTag" value="{{uTag.id}}">{{uTag.tag_name}}</button>
+    {{/each}}
+
+</div>
+</div>
+       
+
+    <div class="column">
+        {{#each tagDataPlain as |tags| }}
+    <button class="skillTag" value="{{tags.id}}">{{tags.tag_name}}</button>
+    </div>
+    </div>
+        {{/each}}
+    </div> 
+    <script src="./js/updateSkills.js"></script>

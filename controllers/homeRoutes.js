@@ -113,8 +113,9 @@ router.get('/jobs', withAuth, async (req, res) => {
         }],
     });
     const plainJobPostings = jobPostings.map((data) => data.get({ plain: true }));
-    console.log(plainJobPostings)
-    res.render('jobs', { plainJobPostings, logged_in: true });
+
+    res.render('jobs', { plainJobPostings });
+
   } catch (err) {
     res.status(500).json(err);
     console.log(err);
@@ -156,7 +157,17 @@ router.get('/skills', withAuth, async (req, res) => {
         }
       }
     });
-    res.status(200).json({ userData, tagData });
+
+    const userInfoData = await User.findByPk(req.session.user_id);
+
+    //Gives 'plain' versions of data to be used with Handlebars.
+    const userDataPlain = userInfoData.get({ plain: true })
+    const userTagsPlain = userData.tags.map((data) => data.get({ plain: true }));
+    const tagDataPlain = tagData.map((data) => data.get({ plain: true }));
+
+    res.status(200).render('skills', { tagDataPlain, userDataPlain, userTagsPlain });
+
+
   } catch (err) {
     res.status(500).json(err);
     console.log(err);
@@ -174,7 +185,11 @@ router.put('/skills', async (req, res) => {
       return SkillTag.findAll({ where: { user_id: req.session.user_id } });
     })
     .then((skillTags) => {
+
+      //console.log(skillTags);
       const skillTagIds = skillTags.map(({ tag_id }) => tag_id);
+      
+
       const newSkillTags = req.body.tagIds
         .filter((tag_id) => !skillTagIds.includes(tag_id))
         .map((tag_id) => {
