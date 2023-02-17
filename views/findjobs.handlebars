@@ -1,6 +1,8 @@
-
 {{!-- job search field --}}
 <div class="jobSearch">
+  {{#if messages.info}}
+  <div class="alert alert-success">{{messages.info}}</div>
+  {{/if}}
   <div class="field is-grouped searchInput">
     <p class="control is-expanded">
       <input class="input is-normal " type="text" placeholder="Find a job">
