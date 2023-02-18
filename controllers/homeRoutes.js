@@ -43,7 +43,7 @@ router.get('/findjobs', withAuth, async (req, res) => {
         }],
     });
     const plainJobPostings = jobPostings.map((data) => data.get({ plain: true }));
-    console.log(plainJobPostings)
+    //console.log(plainJobPostings)
 
     res.render('findjobs', { plainJobPostings, logged_in: true });
   } catch (err) {
@@ -145,7 +145,7 @@ router.get('/skills', withAuth, async (req, res) => {
         }],
     });
     const excludedTags = userData.tags.map((excluded) => excluded.get(userData.tags.id));
-    console.log(excludedTags);
+    //console.log(excludedTags);
     const excludedArr = [];
     excludedTags.forEach(element => {
       excludedArr.push(element.id);
@@ -161,8 +161,11 @@ router.get('/skills', withAuth, async (req, res) => {
     const userInfoData = await User.findByPk(req.session.user_id);
 
     //Gives 'plain' versions of data to be used with Handlebars.
+    
     const userDataPlain = userInfoData.get({ plain: true })
+
     const userTagsPlain = userData.tags.map((data) => data.get({ plain: true }));
+    console.log ("user tags ", userTagsPlain)
     const tagDataPlain = tagData.map((data) => data.get({ plain: true }));
 
     res.status(200).render('skills', { tagDataPlain, userDataPlain, userTagsPlain });
@@ -186,9 +189,7 @@ router.put('/skills', async (req, res) => {
     })
     .then((skillTags) => {
 
-      //console.log(skillTags);
       const skillTagIds = skillTags.map(({ tag_id }) => tag_id);
-      
 
       const newSkillTags = req.body.tagIds
         .filter((tag_id) => !skillTagIds.includes(tag_id))
@@ -197,13 +198,20 @@ router.put('/skills', async (req, res) => {
             user_id: req.session.user_id,
             tag_id,
           };
-        });
-      const skillTagsToRemove = skillTags
-        .filter(({ tag_id }) => !req.body.tagIds.includes(tag_id))
-        .map(({ id }) => id);
+        })
+      /* const skillTagsToRemove = req.body.tagIds
+        .filter(({ tag_id }) => skillTagIds.includes(tag_id))
+        .map((tag_id) => {
+          return {
+            user_id: req.session.user_id,
+            tag_id,
+          }
+        }) */
+
+      //console.log("SKILLS TO REMOVE " , skillTagsToRemove)
 
       return Promise.all([
-        SkillTag.destroy({ where: { id: skillTagsToRemove } }),
+        // SkillTag.destroy({ where: { id: skillTagsToRemove } }),
         SkillTag.bulkCreate(newSkillTags),
       ]);
     })
@@ -248,6 +256,16 @@ router.put('/skills', async (req, res) => {
 //   });
 // });
 
+router.delete('/skills', async (req, res) => {
+  console.log("REQ LOG", req.body.id)
+  console.log("REQ USER", req.session.user_id)
+  try {
+    await SkillTag.destroy({ where : { tag_id: req.body.id , user_id: req.session.user_id } })
+    res.status(200).json("You have deleted the tag")
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 // --------------Logout-----------------------//
 router.post('/logout', (req, res) => {
