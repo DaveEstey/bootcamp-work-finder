@@ -13,23 +13,24 @@
             {{!-- Name --}}
             <div class="field">
                 <label for="Name">Name</label>
-                <input class="input is-primary" id="name" name="name" type="text" placeholder=" Name">
+                <input class="input is-primary" id="name" name="name" type="text" placeholder=" Name" required>
             </div>
             {{!-- Email --}}
             <div class="field">
                 <label for="email">Email</label>
-                <input class="input is-primary" id="email" name="email" type="email" placeholder="Email address">
+                <input class="input is-primary" id="email" name="email" type="email" placeholder="Email address"
+                    required>
             </div>
             {{!-- Message --}}
             <div class="field">
                 <label class="Subject">Message</label>
                 <div class="control">
-                    <textarea class="textarea" name="message" placeholder="Write Something"></textarea>
+                    <textarea class="textarea" name="message" placeholder="Write Something" required></textarea>
                 </div>
             </div>
             {{!-- submit btn --}}
             <div class="field mt-6">
-                <button class="button is-primary is-fullwidth" type="submit">Send</button>
+                <button class="button is-primary is-fullwidth" type="submit" required>Send</button>
             </div>
 
 
