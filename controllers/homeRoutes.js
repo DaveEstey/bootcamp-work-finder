@@ -9,7 +9,7 @@ const session = require('express-session');
 
 router.get('/', async (req, res) => {
   // Send the rendered Handlebars.js template back as the response
-  res.render('register');
+  res.render('register', { logged_in: req.session.logged_in });
 });
 
 
@@ -45,50 +45,48 @@ router.get('/findjobs', withAuth, async (req, res) => {
     const plainJobPostings = jobPostings.map((data) => data.get({ plain: true }));
     //console.log(plainJobPostings)
 
-    res.render('findjobs', { plainJobPostings, logged_in: true });
+    res.render('findjobs', {
+      plainJobPostings,
+      logged_in: req.session.logged_in,
+    });
   } catch (err) {
     res.status(500).json(err);
     console.log(err);
   }
 });
 
-/* router.get('/postjob', async (req, res) => {
+router.get('/postjob', async (req, res) => {
   // Send the rendered Handlebars.js template back as the response
-  /* if (req.session.loggedIn){
-  res.render('postjob');
-  }
-  else {
-    res.redirect('login')
-  } 
- 
-  res.render('postjob')
- 
-});
- */
+
+  res.render('postjob', { logged_in: req.session.logged_in, });
+})
+
 
 // const errorMessage = 'Incorrect email or password.';
 router.get('/login', async (req, res) => {
 
-  if (req.session.loggedIn) {
+  if (req.session.logged_in) {
     res.redirect('/findjobs');
     return;
   }
-  res.render('login');
+  res.render('login', { messages: req.flash() });
 });
 
 router.post('/login', async (req, res) => {
   try {
     const userData = await User.findOne({ where: { user_email: req.body.email } });
     if (!userData) {
-      res.status(400).json({ message: 'No user with that email address!' });
-      // req.flash('error', 'Something Wrong');
-      return;
+      // res.status(400).json({ message: 'Invalid username or password' });
+      req.flash('error', 'Invalid username or password');
+      return res.redirect('/login');
+      // return;
     }
     const validPassword = await userData.checkPassword(req.body.password);
     if (!validPassword) {
-      res.status(400).json({ message: 'Incorrect password!' });
-      // req.flash('error', 'Something Wrong');
-      return;
+      // res.status(400).json({ message: 'Invalid username or password' });
+      req.flash('error', 'Invalid username or password');
+      return res.redirect('/login');
+      // return;
     }
 
     req.session.save(() => {
@@ -114,7 +112,10 @@ router.get('/jobs', withAuth, async (req, res) => {
     });
     const plainJobPostings = jobPostings.map((data) => data.get({ plain: true }));
 
-    res.render('jobs', { plainJobPostings });
+    res.render('jobs', {
+      plainJobPostings,
+      logged_in: req.session.logged_in,
+    });
 
   } catch (err) {
     res.status(500).json(err);
@@ -124,7 +125,10 @@ router.get('/jobs', withAuth, async (req, res) => {
 
 router.get('/contactus', async (req, res) => {
   // Send the rendered Handlebars.js template back as the response
-  res.render('contactus', { messages: req.flash() });
+  res.render('contactus', {
+    messages: req.flash(),
+    logged_in: req.session.logged_in
+  });
 });
 
 router.post('/contactus', async (req, res) => {
@@ -161,14 +165,19 @@ router.get('/skills', withAuth, async (req, res) => {
     const userInfoData = await User.findByPk(req.session.user_id);
 
     //Gives 'plain' versions of data to be used with Handlebars.
-    
+
     const userDataPlain = userInfoData.get({ plain: true })
 
     const userTagsPlain = userData.tags.map((data) => data.get({ plain: true }));
-    console.log ("user tags ", userTagsPlain)
+    console.log("user tags ", userTagsPlain)
     const tagDataPlain = tagData.map((data) => data.get({ plain: true }));
 
-    res.status(200).render('skills', { tagDataPlain, userDataPlain, userTagsPlain });
+    res.status(200).render('skills', {
+      tagDataPlain,
+      userDataPlain,
+      userTagsPlain,
+      logged_in: req.session.logged_in
+    });
 
 
   } catch (err) {
@@ -260,7 +269,7 @@ router.delete('/skills', async (req, res) => {
   console.log("REQ LOG", req.body.id)
   console.log("REQ USER", req.session.user_id)
   try {
-    await SkillTag.destroy({ where : { tag_id: req.body.id , user_id: req.session.user_id } })
+    await SkillTag.destroy({ where: { tag_id: req.body.id, user_id: req.session.user_id } })
     res.status(200).json("You have deleted the tag")
   } catch (err) {
     res.status(500).json(err);
