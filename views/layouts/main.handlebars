@@ -47,7 +47,9 @@
                         <a class="navbar-item" href="/skills">
                             Skills
                         </a>
-
+                        <a class="navbar-item" href="/Contactus">
+                            Contact
+                        </a>
                     </div>
                 </div>
             </div>
@@ -75,9 +77,9 @@
 
     {{{body}}}
 
-
+    {{#if logged_in}}
     <script src="./js/logout.js"></script>
-
+    {{/if}}
 </body>
 
 </html>

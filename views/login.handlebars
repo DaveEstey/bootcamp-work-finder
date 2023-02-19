@@ -1,6 +1,3 @@
-{{#if messages.error}}
-<div>{{messages.error}}</div>
-{{/if}}
 {{!-- log in --}}
 <section class="hero is-fullheight login-bg">
 
@@ -9,17 +6,19 @@
             <div class="title">
                 <h2 class="has-text-white"> Log in</h2>
             </div>
-
+            {{#if messages.error}}
+            <div class="has-text-info has-background-success-light has-text-centered">{{messages.error}}</div>
+            {{/if}}
             <div class="field">
                 <label for="user_email">Email</label>
                 <input class="input is-primary" id="email-login" name="user_email" type="text"
-                    placeholder="Email address">
+                    placeholder="Email address" required>
             </div>
 
             <div class="field">
                 <label for="user_password">Password</label>
                 <input class="input is-primary" id="password-login" name="user_password" type="password"
-                    placeholder="Password">
+                    placeholder="Password" required>
             </div>
 
             <div class="field mt-6">
