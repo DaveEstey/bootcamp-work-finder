@@ -133,7 +133,7 @@ router.get('/skills', withAuth, async (req, res) => {
         }],
     });
     const excludedTags = userData.tags.map((excluded) => excluded.get(userData.tags.id));
-    console.log(excludedTags);
+    // console.log(excludedTags);
     const excludedArr = [];
     excludedTags.forEach(element => {
       excludedArr.push(element.id);
@@ -168,12 +168,17 @@ router.put('/skills', async (req, res) => {
     },
   })
     .then((user) => {
-      return SkillTag.findAll({ where: { user_id: req.session.user_id } });
+      return SkillTag.findAll(
+        { 
+          where: 
+          { 
+            user_id: req.session.user_id 
+          } 
+        });
     })
     .then((skillTags) => {
-      //console.log(skillTags);
       const skillTagIds = skillTags.map(({ tag_id }) => tag_id);
-      
+      // console.log(skillTagIds);
       const newSkillTags = req.body.tagIds
         .filter((tag_id) => !skillTagIds.includes(tag_id))
         .map((tag_id) => {
@@ -182,10 +187,11 @@ router.put('/skills', async (req, res) => {
             tag_id,
           };
         });
+        // console.log(newSkillTags)
       const skillTagsToRemove = skillTags
         .filter(({ tag_id }) => !req.body.tagIds.includes(tag_id))
         .map(({ id }) => id);
-
+        // console.log(newSkillTags);
       return Promise.all([
         SkillTag.destroy({ where: { id: skillTagsToRemove } }),
         SkillTag.bulkCreate(newSkillTags),
