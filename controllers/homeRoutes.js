@@ -194,7 +194,13 @@ router.put('/skills', async (req, res) => {
     },
   })
     .then((user) => {
-      return SkillTag.findAll({ where: { user_id: req.session.user_id } });
+      return SkillTag.findAll(
+        { 
+          where: 
+          { 
+            user_id: req.session.user_id 
+          } 
+        });
     })
     .then((skillTags) => {
 
@@ -218,7 +224,6 @@ router.put('/skills', async (req, res) => {
         }) */
 
       //console.log("SKILLS TO REMOVE " , skillTagsToRemove)
-
       return Promise.all([
         // SkillTag.destroy({ where: { id: skillTagsToRemove } }),
         SkillTag.bulkCreate(newSkillTags),

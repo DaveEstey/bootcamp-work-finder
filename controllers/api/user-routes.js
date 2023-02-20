@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const { User, Tag, SkillTag } = require("../../models");
+const withAuth = require('../../config/auth');
 
 
 //Get all users
@@ -19,23 +20,18 @@ router.get('/', async (req, res) => {
 });
 
 //Get user by id
-router.get('/:id', async (req, res) => {
-    try {
-        const userData = await User.findByPk(req.params.id, {
-            include: [
-                {
-                    model: Tag
-                }],
-        });
-        if (!userData) {
-            res.status(404).json({ message: "No user found with this id!" });
-            return;
-        }
-        res.status(200).json(userData);
-    } catch (err) {
-        res.status(500).json(err);
-        console.log(err);
-    }
+router.get('/skillget', withAuth, async (req, res) => {
+        return SkillTag.findAll({
+            where: 
+            { 
+              user_id: req.session.user_id 
+            }
+        })
+        .then((skillTags) => {
+        const skillTagIds = skillTags.map(({ tag_id }) => tag_id);
+        console.log(skillTagIds);
+        return skillTagIds;
+        })
 });
 
 //Create user
