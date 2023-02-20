@@ -76,17 +76,15 @@ router.post('/login', async (req, res) => {
   try {
     const userData = await User.findOne({ where: { user_email: req.body.email } });
     if (!userData) {
-      // res.status(400).json({ message: 'Invalid username or password' });
-      req.flash('error', 'Invalid username or password');
-      return res.redirect('/login');
-      // return;
+     res.status(400).json({ message: 'Invalid username or password' });
+    
+     return;
     }
     const validPassword = await userData.checkPassword(req.body.password);
     if (!validPassword) {
-      // res.status(400).json({ message: 'Invalid username or password' });
-      req.flash('error', 'Invalid username or password');
-      return res.redirect('/login');
-      // return;
+     res.status(400).json({ message: 'Invalid username or password' });
+    
+    return;
     }
 
     req.session.save(() => {

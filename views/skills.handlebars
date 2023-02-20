@@ -1,8 +1,9 @@
+
+
 <div class="columns fullheight is-vcentered mt-2">
     <div class="column fullheight is-6 has-background-white has-text-centered has-text-black jobs-box">
-        <h1 class="title is-4 has-text-centered">USERNAME: {{userDataPlain.user_firstName}}
-            {{userDataPlain.user_lastName}}</h1>
-        <h2 class="subtitle is-4 has-text-centered">Email: {{userDataPlain.user_email}}</h2>
+        <h1 class= "title is-4 has-text-centered">USERNAME: {{userDataPlain.user_firstName}} {{userDataPlain.user_lastName}}</h1>
+        <h2 class= "subtitle is-4 has-text-centered">Email: {{userDataPlain.user_email}}</h2>
 
         {{#each userTagsPlain as |uTag|}}
         <button class="userSkillTag button is-info" value="{{uTag.id}}">{{uTag.tag_name}}</button>
