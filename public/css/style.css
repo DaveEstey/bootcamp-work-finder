@@ -97,15 +97,10 @@ footer {
   border: 2px black solid;
 }
 
-.jobSearch {
-  padding-top: 100px;
-  align-items: center;
-}
-
 .searchInput {
   width: 500px;
-  margin-left: 450px;
-  padding-bottom: 50px;
+  /* margin-left: 450px;
+  padding-bottom: 50px; */
 }
 
 .form-bg {
@@ -208,3 +203,29 @@ footer {
 }
 
 /**************** Jobs.handlebars ******************/
+
+
+/**************** Findjobs.handlebars ******************/
+
+.find-job {
+  height: 50vh;
+  width: 100vw;
+  margin-bottom: 20px;
+  position: relative;
+  background-size: cover;
+  background-position: 50% 50%;
+  background-image: url("https://user-images.githubusercontent.com/112873819/220190793-9058bf9e-a535-48e2-b9ec-37e2d2b6c543.jpg");
+}
+
+
+.searched-job {
+  border: 1px rgb(140, 140, 141) solid;
+  margin: 20px 200px;
+  background-color: lightgray;
+}
+
+/**************** Findjobs.handlebars ******************/
+
+.fullheight {
+  height: 100vh;
+}
