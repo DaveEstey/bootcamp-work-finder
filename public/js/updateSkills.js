@@ -5,10 +5,10 @@ const skillBtns = document.querySelectorAll(".skillTag");
 var skillsBody = [];
 
 const getCurrentSkills = async () => {
-        skillsBody = await fetch('/api/users/skillget', {
-            method: 'GET'    
-        })
-        
+    skillsBody = await fetch('/api/users/skillget', {
+        method: 'GET'
+    })
+
 }
 getCurrentSkills();
 
@@ -19,11 +19,11 @@ const updateSkills = async (tagIds) => {
     if (tagIds) {
         const response = await fetch('/skills', {
             method: 'PUT',
-            body: JSON.stringify({tagIds: [tagIds]}),
+            body: JSON.stringify({ tagIds: [tagIds] }),
             headers: { "Content-Type": "application/json" },
         });
         if (response.ok) {
-            // document.location.replace('/skills');
+            document.location.replace('/skills');
         } else {
             alert(response.statusText);
         }
@@ -34,7 +34,7 @@ const deleteSkills = async (id) => {
     if (id) {
         const response = await fetch('/skills', {
             method: 'DELETE',
-            body: JSON.stringify( {id : id}),
+            body: JSON.stringify({ id: id }),
             headers: { "Content-Type": "application/json" },
         });
         if (response.ok) {
@@ -49,13 +49,13 @@ const deleteSkills = async (id) => {
 
 skillBtns.forEach((element) => {
     element.addEventListener("click", (event) => {
-    updateSkills(event.target.value);
-});
+        updateSkills(event.target.value);
+    });
 });
 
 UserBtns.forEach((element) => {
     element.addEventListener("click", (event) => {
-    deleteSkills(event.target.value);
+        deleteSkills(event.target.value);
     });
 })
 
