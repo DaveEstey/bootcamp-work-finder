@@ -276,6 +276,43 @@ router.delete('/skills', async (req, res) => {
   }
 });
 
+
+
+// search for jobs
+router.get('/search', async (req, res) => {
+  let { term } = req.query;
+
+
+  try {
+    const jobSearch = await JobPosting.findAll({
+
+      include: [
+        {
+          model: Tag,
+          model: Company,
+        }],
+      where: {
+        job_title: {
+          [Op.like]: `%${term}%`
+        }
+      },
+    });
+    const plainJobSearch = jobSearch.map((data) => data.get({ plain: true }));
+    console.log(plainJobSearch)
+
+    res.render('findjobs', {
+      plainJobSearch,
+      logged_in: req.session.logged_in,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+    console.log(err);
+  }
+});
+
+
+
+
 // --------------Logout-----------------------//
 router.post('/logout', (req, res) => {
   if (req.session.logged_in) {
@@ -286,5 +323,8 @@ router.post('/logout', (req, res) => {
     res.status(404).end();
   }
 });
+
+
+
 
 module.exports = router;
