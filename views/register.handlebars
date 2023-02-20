@@ -5,6 +5,8 @@
         <h3 class=" has-text-weight-bold">Find Your Dream Job </h3>
     </div>
     {{!-- Sign up form --}}
+    {{#if logged_in}}
+    {{else}}
     <div class="create-account">
         <form>
             <div class="title has-text-black">
@@ -36,6 +38,7 @@
             </div>
         </form>
     </div>
+    {{/if}}
 </section>
 
 {{!-- text container --}}

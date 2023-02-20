@@ -1,49 +1,52 @@
-    <div class="column">
+<div class="box has-text-centered job-listing">
+    <div class="overlay">
+        <h1 class="has-text-weight-bold is-size-2 has-text-white">Job Listings</h1>
+        <h3 class="has-text-weight-medium has-text-black has-text-black-bis">Find your dream jobs in our
+            BootCamp-Work-Finder website</h3>
+    </div>
+
+</div>
+
+
+
+
+<div class="columns is-centered is-multiline">
+    {{#each plainJobPostings as |job| }}
+    <div class="column is-one-quarter mx-5 my-5">
+
+        <div class="card">
+
+            <div class="card-content">
+                <div class="media">
+                    <div class="media-content">
+                        <p class="title is-4">{{this.job_title}}</p>
+                        <hr>
+                        <p class="subtitle is-4">Company: {{this.company.company_name}}</p>
+                    </div>
+                </div>
+
+                <div class="content">
+                    <p>Salary: ${{this.salary}}</p>
+                    <p>{{this.job_description}}</p>
+
+                    <a href="mailto: {{this.company.company_email}}"><button class="button is-info">
+                            Apply Now
+                        </button></a>
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    {{/each}}
+    {{!-- <div class="column">
         {{#each plainJobPostings as |job| }}
         <div class="box has-background-white has-text-centered has-text-black jobs-box">
-    <h1>{{this.job_title}}</h1>
-    <h2>Company: {{this.company.company_name}}</h2>
-    <p>Email: {{this.company.company_email}}</p>
-    <p>Salary: ${{this.salary}}</p>
-    <p>{{this.job_description}}</p>
-</div>
-        {{/each}}
-{{!-- hard coded data..will be replace with db data --}}
-{{!--
-<div class="box has-background-white has-text-centered has-text-black jobs-box">
-    <h1>Full-Stack Developer</h1>
-    <h2>UNB</h2>
-    <p>UNB@gmail.com</p>
-    <p>$5000</p>
-    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Inventore doloremque nobis minima assumenda
-        aut
-        autem expedita quidem? Provident, dolorum. Maxime voluptatem illum laboriosam et, reiciendis asperiores?
-        Mollitia corporis at nulla.</p>
-</div>
-<div class="box has-background-white has-text-centered has-text-black jobs-box">
-    <h1>Full-Stack Developer</h1>
-    <h2>UNB</h2>
-    <p>UNB@gmail.com</p>
-    <p>$5000</p>
-    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Inventore doloremque nobis minima assumenda aut
-        autem expedita quidem? Provident, dolorum. Maxime voluptatem illum laboriosam et, reiciendis asperiores?
-        Mollitia corporis at nulla.</p>
-</div>
-<div class="box has-background-white has-text-centered has-text-black jobs-box">
-    <h1>Full-Stack Developer</h1>
-    <h2>UNB</h2>
-    <p>UNB@gmail.com</p>
-    <p>$5000</p>
-    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Inventore doloremque nobis minima assumenda aut
-        autem expedita quidem? Provident, dolorum. Maxime voluptatem illum laboriosam et, reiciendis asperiores?
-        Mollitia corporis at nulla.</p>
-</div>
-<div class="box has-background-white has-text-centered has-text-black jobs-box">
-    <h1>Full-Stack Developer</h1>
-    <h2>UNB</h2>
-    <p>UNB@gmail.com</p>
-    <p>$5000</p>
-    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Inventore doloremque nobis minima assumenda aut
-        autem expedita quidem? Provident, dolorum. Maxime voluptatem illum laboriosam et, reiciendis asperiores?
-        Mollitia corporis at nulla.</p> --}}
-   
+            <h1>{{this.job_title}}</h1>
+            <h2>Company: {{this.company.company_name}}</h2>
+            <p>Email: {{this.company.company_email}}</p>
+            <p>Salary: ${{this.salary}}</p>
+            <p>{{this.job_description}}</p>
+        </div>
+        {{/each}} --}}
