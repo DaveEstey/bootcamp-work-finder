@@ -17,7 +17,7 @@ const signUp = async (event) => {
         });
         console.log("new user added" + newUser)
         if (newUser.ok) {
-            document.location.replace('/');
+            document.location.replace('/login');
 
         } else {
             alert('Sign up failed, please try again!')

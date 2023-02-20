@@ -1,31 +1,36 @@
+{{#if messages.success}}
+<div class="has-text-info has-background-success-light has-text-centered">{{messages.success}}</div>
+{{/if}}
+
 
 {{!-- contact form --}}
 <section class="hero is-fullheight login-bg">
     <div class="container post-job-form">
-        <form class="form-bg" method="post">
+        <form onsubmit="sendEmail(); reset(); return false;" class="form-bg" method="POST">
             <div class="title">
                 <h2 class="has-text-white">Contact Form</h2>
             </div>
             {{!-- Name --}}
             <div class="field">
                 <label for="Name">Name</label>
-                <input class="input is-primary" name="Name" type="text" placeholder=" Name">
+                <input class="input is-primary" id="name" name="name" type="text" placeholder=" Name" required>
             </div>
             {{!-- Email --}}
             <div class="field">
                 <label for="email">Email</label>
-                <input class="input is-primary" name="Email" type="text" placeholder="Email address">
+                <input class="input is-primary" id="email" name="email" type="email" placeholder="Email address"
+                    required>
             </div>
             {{!-- Message --}}
             <div class="field">
                 <label class="Subject">Message</label>
                 <div class="control">
-                    <textarea class="textarea" name="Subject" placeholder="Write Something"></textarea>
+                    <textarea class="textarea" name="message" placeholder="Write Something" required></textarea>
                 </div>
             </div>
             {{!-- submit btn --}}
             <div class="field mt-6">
-                <button class="button is-primary is-fullwidth" type="submit">Submit</button>
+                <button class="button is-primary is-fullwidth" type="submit" required>Send</button>
             </div>
 
 
@@ -36,3 +41,19 @@
 
     </div>
 </section>
+<script src="https://smtpjs.com/v3/smtp.js"></script>
+<script>
+    function sendEmail() {
+        Email.send({
+            SecureToken: "d1bf38d0-43bc-48a7-9d37-dd517df723fa",
+            To: 'bootcampjobfinder@gmail.com',
+            From: document.getElementById('email').value,
+            Subject: "New Contact",
+            Body: "Name:" + document.getElementById('name').value
+                + "<br> Message:" + document.getElementById("message").value
+        }).then(
+            message => alert(message)
+        );
+    }
+
+</script>
