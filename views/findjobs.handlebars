@@ -1,42 +1,98 @@
 {{!-- job search field --}}
-<div class="jobSearch">
-  {{!-- {{#if messages.info}}
-  <div class="alert alert-success">{{messages.info}}</div>
-  {{/if}} --}}
-  <form action="/search" class="field is-grouped searchInput">
-    <p class="control is-expanded">
-      <input class="input is-normal" name="term" type="search"
-        placeholder="Front End Developer,Full Stack Developer,Project Manager">
-    </p>
-    <p class="control">
-      <input class="button is-info" , type="submit" value="Search">
-    </p>
-  </form>
+
+{{!-- {{#if messages.info}}
+<div class="alert alert-success">{{messages.info}}</div>
+{{/if}} --}}
+<div class="find-job">
+  <div class="overlay">
+    <form action="/search" class="field is-grouped searchInput">
+      <p class="control is-expanded">
+        <input class="input is-normal" name="term" type="search"
+          placeholder="Front End Developer,Full Stack Developer,Project Manager">
+      </p>
+      <p class="control">
+        <input class="button is-info" , type="submit" value="Search">
+      </p>
+    </form>
+  </div>
+</div>
 
 
-  {{!-- display searched jobs --}}
+
+{{!-- display searched jobs --}}
+<div class="columns is-centered is-multiline">
   {{#each plainJobPostings as |job| }}
+  <div class="column is-one-quarter mx-5 my-5">
+
+    <div class="card">
+
+      <div class="card-content">
+        <div class="media">
+          <div class="media-content">
+            <p class="title is-4">{{this.job_title}}</p>
+            <hr>
+            <p class="subtitle is-4">Company: {{this.company.company_name}}</p>
+          </div>
+        </div>
+
+        <div class="content">
+          <p>Salary: ${{this.salary}}</p>
+          <p>{{this.job_description}}</p>
+
+          <a href="mailto: {{this.company.company_email}}"><button class="button is-info">
+              Apply Now
+            </button></a>
+
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+  {{/each}}
+
+
+  {{!-- Using search bar --}}
+  {{!-- {{#each plainJobSearch}}
   <div class="box has-background-white has-text-centered has-text-black jobs-box">
-    <h1>{{this.job_title}}</h1>
-    <h2>Company: {{this.company.company_name}}</h2>
-    <p>Email: {{this.company.company_email}}</p>
-    <p>Salary: ${{this.salary}}</p>
-    <p>{{this.job_description}}</p>
+    <h1>{{job_title}}</h1>
+    <h2>Company: {{company.company_name}}</h2>
+    <p>Email: {{company.company_email}}</p>
+    <p>Salary: ${{salary}}</p>
+    <p>{{job_description}}</p>
   </div>
   {{/each}}
 </div>
-</div>
+</div> --}}
 
 
-{{!-- Using search bar --}}
-{{#each plainJobSearch}}
-<div class="box has-background-white has-text-centered has-text-black jobs-box">
-  <h1>{{job_title}}</h1>
-  <h2>Company: {{company.company_name}}</h2>
-  <p>Email: {{company.company_email}}</p>
-  <p>Salary: ${{salary}}</p>
-  <p>{{job_description}}</p>
+<div class="columns is-centered ">
+  {{#each plainJobSearch}}
+  <div class="column">
+
+
+
+    <div class="card-content mx-7 searched-job has-text-left ">
+      <div class="media">
+        <div class="media-content">
+          <p class="title is-4">{{job_title}}</p>
+          <hr>
+          <p class="subtitle is-4">Company: {{company.company_name}}</p>
+        </div>
+      </div>
+      <br>
+      <div class="content">
+        <p>Salary: ${{salary}}</p>
+        <p>{{job_description}}</p>
+
+        <a href="mailto: {{company.company_email}}"><button class="button is-info">
+            Apply Now
+          </button></a>
+
+
+      </div>
+    </div>
+  </div>
+
 </div>
 {{/each}}
-</div>
-</div>
