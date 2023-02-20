@@ -44,7 +44,7 @@ footer {
 }
 
 .welcome-text {
-  color: #7FE9DE;
+  color: #82ffd9;
   margin-top: 200px;
   padding-left: 150px;
   font-size: 3em;
@@ -135,7 +135,7 @@ footer {
 }
 
 .demand-job {
-  background-color: aquamarine;
+  background-color: #82ffd9;
   margin: 20px 100px;
 }
 
@@ -208,3 +208,12 @@ footer {
 }
 
 /**************** Jobs.handlebars ******************/
+
+.button.is-info{
+  background-color: #82ffd9;
+  color: #051726;
+}
+
+.fullheight {
+  height: 100vh;
+}
