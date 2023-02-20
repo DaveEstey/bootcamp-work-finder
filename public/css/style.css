@@ -227,7 +227,7 @@ footer {
 
 /**************** Findjobs.handlebars ******************/
 
-.button.is-info{
+.button.is-info {
   background-color: #82ffd9;
   color: #051726;
 }
@@ -236,3 +236,15 @@ footer {
   height: 100vh;
 }
 
+/************** Skill page ******************/
+
+.skill {
+  margin: 5px 5px;
+}
+
+
+/************** Skill page ******************/
+
+.border-right {
+  border-right: 2px solid black;
+}

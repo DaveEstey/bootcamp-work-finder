@@ -1,20 +1,22 @@
-
-
 <div class="columns fullheight is-vcentered mt-2">
-    <div class="column fullheight is-6 has-background-white has-text-centered has-text-black jobs-box">
-        <h1 class= "title is-4 has-text-centered">USERNAME: {{userDataPlain.user_firstName}} {{userDataPlain.user_lastName}}</h1>
-        <h2 class= "subtitle is-4 has-text-centered">Email: {{userDataPlain.user_email}}</h2>
-
+    <div class="column fullheight is-6 has-background-white has-text-centered has-text-black border-right">
+        <h1 class="title is-2 has-text-centered mt-2">{{userDataPlain.user_firstName}}
+            {{userDataPlain.user_lastName}}</h1>
+        <hr>
+        <h2 class="subtitle is-4 has-text-centered">Email: {{userDataPlain.user_email}}</h2><br>
+        <h2 class="is-underlined is-size-4">Skill that you have</h2><br>
         {{#each userTagsPlain as |uTag|}}
-        <button class="userSkillTag button is-info" value="{{uTag.id}}">{{uTag.tag_name}}</button>
+        <button class="userSkillTag button is-info skill" value="{{uTag.id}}">{{uTag.tag_name}}</button>
         {{/each}}
 
     </div>
     <div class="column fullheight">
-        <h1 class="title is-4 has-text-centered">Skills that you can choose from.</h1>
-        {{#each tagDataPlain as |tags| }}
-        <button class="skillTag button is-info" value="{{tags.id}}">{{tags.tag_name}}</button>
-        {{/each}}
+        <h1 class="title is-2 has-text-centered">Skills that you can choose from</h1>
+        <div class="is-flex is-align-items-center is-flex-wrap-wrap">
+            {{#each tagDataPlain as |tags| }}
+            <button class="skillTag button is-info skill column" value="{{tags.id}}">{{tags.tag_name}}</button>
+            {{/each}}
+        </div>
     </div>
 </div>
 
