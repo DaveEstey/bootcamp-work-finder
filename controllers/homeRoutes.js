@@ -76,15 +76,15 @@ router.post('/login', async (req, res) => {
   try {
     const userData = await User.findOne({ where: { user_email: req.body.email } });
     if (!userData) {
-     res.status(400).json({ message: 'Invalid username or password' });
-    
-     return;
+      res.status(400).json({ message: 'Invalid username or password' });
+
+      return;
     }
     const validPassword = await userData.checkPassword(req.body.password);
     if (!validPassword) {
-     res.status(400).json({ message: 'Invalid username or password' });
-    
-    return;
+      res.status(400).json({ message: 'Invalid username or password' });
+
+      return;
     }
 
     req.session.save(() => {
@@ -99,7 +99,7 @@ router.post('/login', async (req, res) => {
 });
 
 
-router.get('/jobs', withAuth, async (req, res) => {
+router.get('/jobs', async (req, res) => {
   try {
     const jobPostings = await JobPosting.findAll({
       include: [
@@ -193,11 +193,11 @@ router.put('/skills', async (req, res) => {
   })
     .then((user) => {
       return SkillTag.findAll(
-        { 
-          where: 
-          { 
-            user_id: req.session.user_id 
-          } 
+        {
+          where:
+          {
+            user_id: req.session.user_id
+          }
         });
     })
     .then((skillTags) => {
