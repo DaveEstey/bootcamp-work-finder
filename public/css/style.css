@@ -16,7 +16,6 @@ footer {
 
 /* id and Class Styling */
 
-
 #title {
   display: none;
 }
@@ -155,6 +154,8 @@ footer {
 
 /* ****************** nav-bar  ********************** */
 
+/* ****************** media screen  ********************** */
+
 @media screen and (max-width: 992px) {
   .welcome-text {
     display: none;
@@ -173,7 +174,8 @@ footer {
   }
 }
 
-/* ****************** nav-bar  ********************** */
+/* ****************** media screen  ********************** */
+
 
 
 
@@ -225,7 +227,7 @@ footer {
   background-color: lightgray;
 }
 
-/**************** Findjobs.handlebars ******************/
+
 
 .button.is-info {
   background-color: #82ffd9;
@@ -236,6 +238,13 @@ footer {
   height: 100vh;
 }
 
+.no-jobs {
+  margin-left: 100px;
+  margin-bottom: 20px;
+
+
+}
+
 /************** Skill page ******************/
 
 .skill {
@@ -243,7 +252,6 @@ footer {
 }
 
 
-/************** Skill page ******************/
 
 .border-right {
   border-right: 2px solid black;
