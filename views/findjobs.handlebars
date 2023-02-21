@@ -13,15 +13,11 @@
   </div>
 </div>
 
-
-
 {{!-- display searched jobs --}}
 <div class="columns is-centered is-multiline">
   {{#each plainJobPostings as |job| }}
   <div class="column is-one-quarter mx-5 my-5">
-
     <div class="card">
-
       <div class="card-content">
         <div class="media">
           <div class="media-content">
@@ -30,16 +26,14 @@
             <p class="subtitle is-4">Company: {{this.company.company_name}}</p>
           </div>
         </div>
-
         <div class="content">
           <p>Salary: ${{this.salary}}</p>
           <p>{{this.job_description}}</p>
-
+          <p class="is-underlined is-size-5">Job Requirements</p>
+          <p class="has-text-weight-bold is-size-6 tags">{{this.skill_tags}}</p>
           <a href="mailto: {{this.company.company_email}}"><button class="button is-info">
               Apply Now
             </button></a>
-
-
         </div>
       </div>
     </div>
@@ -47,27 +41,10 @@
   </div>
   {{/each}}
 
-
-  {{!-- Using search bar --}}
-  {{!-- {{#each plainJobSearch}}
-  <div class="box has-background-white has-text-centered has-text-black jobs-box">
-    <h1>{{job_title}}</h1>
-    <h2>Company: {{company.company_name}}</h2>
-    <p>Email: {{company.company_email}}</p>
-    <p>Salary: ${{salary}}</p>
-    <p>{{job_description}}</p>
-  </div>
-  {{/each}}
-</div>
-</div> --}}
-
 {{!-- Using search bar --}}
 <div class="columns is-centered ">
   {{#each plainJobSearch}}
   <div class="column">
-
-
-
     <div class="card-content mx-7 searched-job has-text-left ">
       <div class="media">
         <div class="media-content">
@@ -84,8 +61,6 @@
         <a href="mailto: {{company.company_email}}"><button class="button is-info">
             Apply Now
           </button></a>
-
-
       </div>
     </div>
   </div>
@@ -97,7 +72,6 @@
     <img src="https://user-images.githubusercontent.com/112873819/220351063-16e019b7-ad3d-4290-a81e-79da95476f09.png"
       width="50" height="28">
   </p>
-
   <h2>Sorry, no jobs found for that search.</h2>
 </div>
 {{/each}}

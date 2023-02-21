@@ -30,6 +30,10 @@ JobPosting.init(
         type: DataTypes.DATE,
         defaultValue: DataTypes.NOW,
     },
+    skill_tags: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
     company_id: {
         type: DataTypes.INTEGER,
         references: {
