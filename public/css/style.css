@@ -81,6 +81,13 @@ footer {
   align-items: center;
 }
 
+.login-title {
+  background-color: #051726;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+}
+
 .login-account {
   background-color: hsla(200, 12%, 25%, 0.6);
   color: white;
@@ -239,10 +246,12 @@ footer {
 }
 
 .no-jobs {
-  margin-left: 100px;
   margin-bottom: 20px;
+}
 
-
+.findJob-msg {
+  display: flex;
+  justify-content: center;
 }
 
 /************** Skill page ******************/
