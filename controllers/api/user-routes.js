@@ -2,7 +2,6 @@ const router = require("express").Router();
 const { User, Tag, SkillTag } = require("../../models");
 const withAuth = require('../../config/auth');
 
-
 //Get all users
 router.get('/', async (req, res) => {
     try {
@@ -44,31 +43,12 @@ router.post('/', async (req, res) => {
             user_firstName: req.body.fName,
             user_lastName: req.body.lName,
         })
-
         res.status(200).json(newUser);
     } catch (err) {
         console.log(err)
         res.status(400).json(err);
     }
 });
-
-
-/* if (req.body.tagIds.length) {
-    const userTagIdsArr = req.body.tagIds.map((tag_id) => {
-        return {
-            user_id: userData.id,
-            tag_id,
-        };
-    });
-    return SkillTag.bulkCreate(userTagIdsArr);
-}
- 
-})
-.then((skillTagIds) => res.status(200).json(skillTagIds))
-} catch ((err) => {
-console.log(err);
-res.status(400).json(err);
-}); */
 
 //Update User
 router.put('/:id', (req, res) => {
@@ -93,7 +73,6 @@ router.put('/:id', (req, res) => {
             const skillTagsToRemove = skillTags
                 .filter(({ tag_id }) => !req.body.tagIds.includes(tag_id))
                 .map(({ id }) => id);
-
             return Promise.all([
                 SkillTag.destroy({ where: { id: skillTagsToRemove } }),
                 SkillTag.bulkCreate(newSkillTags),
@@ -123,7 +102,5 @@ router.delete('/:id', async (req, res) => {
         console.log(err);
     }
 });
-
-
 
 module.exports = router;

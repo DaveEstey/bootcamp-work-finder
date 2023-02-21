@@ -1,8 +1,6 @@
 {{#if messages.success}}
 <div class="has-text-info has-background-success-light has-text-centered">{{messages.success}}</div>
 {{/if}}
-
-
 {{!-- contact form --}}
 <section class="hero is-fullheight login-bg">
     <div class="container post-job-form">
@@ -32,13 +30,8 @@
             <div class="field mt-6">
                 <button class="button is-info  is-fullwidth" type="submit" required>Send</button>
             </div>
-
-
-
         </form>
-
     </div>
-
     </div>
 </section>
 <script src="https://smtpjs.com/v3/smtp.js"></script>
@@ -55,5 +48,4 @@
             message => alert(message)
         );
     }
-
 </script>

@@ -34,24 +34,16 @@
                     <a href="mailto: {{this.company.company_email}}"><button class="button is-info">
                             Apply Now
                         </button></a>
-
-
                 </div>
-
             </div>
         </div>
-
     </div>
     {{/each}}
-
     {{else}}
-
     <div class="columns is-centered is-multiline">
         {{#each plainJobPostings as |job| }}
         <div class="column is-one-quarter mx-5 my-5">
-
             <div class="card">
-
                 <div class="card-content">
                     <div class="media">
                         <div class="media-content">
@@ -60,22 +52,8 @@
                             <p class="subtitle is-4">Company: {{this.company.company_name}}</p>
                         </div>
                     </div>
-
-
-
                 </div>
             </div>
-
         </div>
         {{/each}}
         {{/if}}
-        {{!-- <div class="column">
-            {{#each plainJobPostings as |job| }}
-            <div class="box has-background-white has-text-centered has-text-black jobs-box">
-                <h1>{{this.job_title}}</h1>
-                <h2>Company: {{this.company.company_name}}</h2>
-                <p>Email: {{this.company.company_email}}</p>
-                <p>Salary: ${{this.salary}}</p>
-                <p>{{this.job_description}}</p>
-            </div>
-            {{/each}} --}}

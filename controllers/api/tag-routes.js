@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const { Tag, User, JobPosting, JobTag, SkillTag } = require('../../models');
 
+//Route to get all tags
 router.get('/', async (req, res) => {
     try {
         const tagData = await Tag.findAll({
@@ -21,7 +22,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-// get one tag by its `id` value
+//Route to get one tag by its `id` value
 router.get('/:id', async (req, res) => {
     try {
         const tagData = await Tag.findByPk(req.params.id, {
@@ -47,7 +48,7 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-// create a new tag
+//Route to create a new tag
 router.post('/', async (req, res) => {
     try {
         const tagData = await Tag.create(req.body);
@@ -57,7 +58,7 @@ router.post('/', async (req, res) => {
     }
 });
 
-//update a tag by its `id` value
+//Route to update a tag by its `id` value
 router.put('/:id', async (req, res) => {
     try {
         const tagData = await Tag.update(req.body, {
@@ -75,7 +76,7 @@ router.put('/:id', async (req, res) => {
     }
 });
 
-// delete a tag by its `id` value
+//Route to delete a tag by its `id` value
 router.delete('/:id', async (req, res) => {
     try {
         const tagData = await Tag.destroy({

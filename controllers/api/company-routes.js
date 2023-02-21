@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { Company, JobPosting } = require('../../models');
 
-//Get all companies
+//Route to Get all companies
 router.get('/', async (req, res) => {
     try {
         const companies = await Company.findAll({
@@ -16,7 +16,8 @@ router.get('/', async (req, res) => {
         res.status(500).json(err);
     }
 });
-//Get a single company
+
+//Route to Get a single company
 router.get('/:id', async (req, res) => {
     try {
         const company = await Company.findByPk(req.params.id, {
@@ -36,7 +37,7 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-//create a new company
+//Route to create a new company
 router.post('/', async (req, res) => {
     try {
         const newCompany = await Company.create(req.body);
@@ -45,16 +46,8 @@ router.post('/', async (req, res) => {
         res.status(400).json(err);
     }
 });
-/* 
-Example:
-{
-    "company_name": "Company Name",
-    "company_email": "lyhxr@example.com",
-    "company_phone": "1234567890"
-}
-*/
 
-//update a company
+//Route to update a company
 router.put('/:id', async (req, res) => {
     try {
         const company = await Company.update(req.body, {
@@ -72,7 +65,7 @@ router.put('/:id', async (req, res) => {
     }
 });
 
-//delete a company
+//Route to delete a company
 router.delete('/:id', async (req, res) => {
     try {
         const company = await Company.destroy({

@@ -1,7 +1,6 @@
 const { User } = require('../models');
 
 const userData = [
-
     {
         user_email: "cfanthome0@infoseek.co.jp",
         user_password: "kPf3IHJ58iN",

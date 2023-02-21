@@ -4,9 +4,7 @@ const seedJobPostings = require('./job-posting-seeds');
 const seedTags = require('./tag-seeds');
 const seedSkillTags = require('./skill-tag-seeds');
 const seedJobTags = require('./job-tag-seeds');
-
 const sequelize = require('../config/connection');
-
 const seedAll = async () => {
     await sequelize.sync({ force: true });
     console.log('\n----- DATABASE SYNCED -----\n');
@@ -28,12 +26,8 @@ const seedAll = async () => {
 
     await seedJobTags();
     console.log('\n----- JOB TAGS SEEDED -----\n');
-    
-    
-    
     process.exit(0);
 };
-
 seedAll();
 
 
