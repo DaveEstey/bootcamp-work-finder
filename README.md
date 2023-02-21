@@ -1,8 +1,9 @@
 # Bootcamp-Work-Finder
 
-
 ![app](https://img.shields.io/badge/Express.js-brightgreen) ![app](https://img.shields.io/badge/-MySQL-blue) ![app](https://img.shields.io/badge/-Sequelize-yellowgreen) ![app](https://img.shields.io/badge/MVC-brown)  ![app](https://img.shields.io/badge/connect-flash-brightgreen)
  ![app](https://img.shields.io/badge/-Bulma-blue) ![app](https://img.shields.io/badge/-Handlebars-yellowgreen)  ![app](https://img.shields.io/badge/Express-Session-brown)
+ 
+ # Description :
  
 In this project, We developed an webapp that to help recent bootcamp graduates land their dream job. This is a simple job finder application, where users can login or sign up and get their dream job.
 
