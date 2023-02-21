@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { JobPosting, Tag, JobTag, Company } = require('../../models');
 
-//get all job postings
+//Route to get all job postings
 router.get('/', async (req, res) => {
     try {
         const jobPostings = await JobPosting.findAll({
@@ -18,7 +18,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-//get job posting by id
+//Route to get job posting by id
 router.get('/:id', async (req, res) => {
     try {
         const jobPosting = await JobPosting.findByPk(req.params.id, {
@@ -42,7 +42,7 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-//create new job posting
+//Route to create new job posting
 router.post('/', (req, res) => {
     JobPosting.create(req.body)
         .then((jobPosting) => {
@@ -64,7 +64,7 @@ router.post('/', (req, res) => {
         });
 });
 
-//update job posting
+//Route to update job posting
 router.put('/:id', (req, res) => {
     JobPosting.update(req.body, {
         where: {
@@ -100,7 +100,7 @@ router.put('/:id', (req, res) => {
         });
 });
 
-//Delete job posting
+//Route to delete job posting
 router.delete('/:id', async (req, res) => {
     try {
         const jobPosting = await JobPosting.destroy({

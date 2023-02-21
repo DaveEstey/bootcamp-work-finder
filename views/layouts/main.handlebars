@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,15 +8,12 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" href="/css/style.css">
 </head>
-
 <body>
     {{!-- nav bar --}}
     <header>
-
         <nav class="navbar is-white" role="navigation" aria-label="main navigation">
             <input type="checkbox" id="toggler" class="toggler" />
             <div class="navbar-brand">
-
                 <a class="navbar-item" href="/">
                     <img src="https://user-images.githubusercontent.com/112873819/219166145-40394699-d5f5-4687-af97-d9ac05ab7821.png"
                         width="50" height="28"><span id="title">Welcome to Bootcamp Work Finder</span>
@@ -32,8 +28,6 @@
             <div id="navbarBasic
                      " class="navbar-menu">
                 <div class="navbar-start">
-
-
                     <div class="navbar-start ">
                         <a class="navbar-item" href="/findjobs">
                             Find Jobs
@@ -53,9 +47,6 @@
                     </div>
                 </div>
             </div>
-
-
-
             <div class="navbar-end">
                 <div class="navbar-item">
                     <div class="buttons">
@@ -74,12 +65,9 @@
             </div>
         </nav>
     </header>
-
     {{{body}}}
-
     {{#if logged_in}}
     <script src="./js/logout.js"></script>
     {{/if}}
 </body>
-
 </html>

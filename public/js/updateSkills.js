@@ -1,4 +1,3 @@
-
 const UserBtns = document.querySelectorAll(".userSkillTag")
 const skillBtns = document.querySelectorAll(".skillTag");
 
@@ -11,7 +10,6 @@ const getCurrentSkills = async () => {
 
 }
 getCurrentSkills();
-
 const updateSkills = async (tagIds) => {
     console.log('Body: ' + skillsBody);
     const test = skillsBody.concat(tagIds);
@@ -29,7 +27,6 @@ const updateSkills = async (tagIds) => {
         }
     }
 }
-
 const deleteSkills = async (id) => {
     if (id) {
         const response = await fetch('/skills', {
@@ -44,8 +41,6 @@ const deleteSkills = async (id) => {
         }
     }
 }
-
-
 
 skillBtns.forEach((element) => {
     element.addEventListener("click", (event) => {

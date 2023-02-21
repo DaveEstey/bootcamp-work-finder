@@ -1,10 +1,7 @@
 const router = require('express').Router();
 const { JobPosting, Tag, Company, User, SkillTag } = require('../models');
 const withAuth = require('../config/auth');
-const passport = require('../config/passport-config');
 const { Op } = require("sequelize");
-const session = require('express-session');
-
 
 
 router.get('/', async (req, res) => {
@@ -12,26 +9,7 @@ router.get('/', async (req, res) => {
   res.render('register', { logged_in: req.session.logged_in });
 });
 
-
-// router.post('/login', passport.authenticate('local',),
-//   function (req, res) {
-//     console.log(res)
-//     res.redirect(200, '/jobs');
-
-//   });
-
-// router.post('/login', passport.authenticate('local', {
-//   successRedirect: '/findjobs',
-//   failureRedirect: '/'
-// }
-// ));
-
-// function isLoggedIn(req, res, next) {
-//   if (req.isAuthenticated())
-//     return next();
-//   res.redirect('/login');
-// }
-
+//Route for finding jobs
 router.get('/findjobs', withAuth, async (req, res) => {
   // Send the rendered Handlebars.js template back as the response
   try {
@@ -43,8 +21,6 @@ router.get('/findjobs', withAuth, async (req, res) => {
         }],
     });
     const plainJobPostings = jobPostings.map((data) => data.get({ plain: true }));
-    //console.log(plainJobPostings)
-
     res.render('findjobs', {
       plainJobPostings,
       logged_in: req.session.logged_in,
@@ -55,16 +31,14 @@ router.get('/findjobs', withAuth, async (req, res) => {
   }
 });
 
+//Route for posting jobs
 router.get('/postjob', async (req, res) => {
   // Send the rendered Handlebars.js template back as the response
-
   res.render('postjob', { logged_in: req.session.logged_in, });
 })
 
-
-// const errorMessage = 'Incorrect email or password.';
+//Route for failed login error message
 router.get('/login', async (req, res) => {
-
   if (req.session.logged_in) {
     res.redirect('/findjobs');
     return;
@@ -72,25 +46,22 @@ router.get('/login', async (req, res) => {
   res.render('login', { messages: req.flash() });
 });
 
+//Route for login credentials and validation
 router.post('/login', async (req, res) => {
   try {
     const userData = await User.findOne({ where: { user_email: req.body.email } });
     if (!userData) {
       res.status(400).json({ message: 'Invalid username or password' });
-
       return;
     }
     const validPassword = await userData.checkPassword(req.body.password);
     if (!validPassword) {
       res.status(400).json({ message: 'Invalid username or password' });
-
       return;
     }
-
     req.session.save(() => {
       req.session.user_id = userData.id;
       req.session.logged_in = true;
-
       res.json({ user: userData, message: 'You are now logged in!' });
     });
   } catch (error) {
@@ -98,7 +69,7 @@ router.post('/login', async (req, res) => {
   }
 });
 
-
+//Route to view jobs, basic data when logged out, full data when logged in
 router.get('/jobs', async (req, res) => {
   try {
     const jobPostings = await JobPosting.findAll({
@@ -109,18 +80,17 @@ router.get('/jobs', async (req, res) => {
         }],
     });
     const plainJobPostings = jobPostings.map((data) => data.get({ plain: true }));
-
     res.render('jobs', {
       plainJobPostings,
       logged_in: req.session.logged_in,
     });
-
   } catch (err) {
     res.status(500).json(err);
     console.log(err);
   }
 });
 
+//Route for contact us
 router.get('/contactus', async (req, res) => {
   // Send the rendered Handlebars.js template back as the response
   res.render('contactus', {
@@ -129,13 +99,12 @@ router.get('/contactus', async (req, res) => {
   });
 });
 
+//Route for thank you message for contacting us
 router.post('/contactus', async (req, res) => {
   // Send the rendered Handlebars.js template back as the response
-
   req.flash('success', 'Thank you for your message!');
   res.redirect('/contactus');
 });
-
 
 //Gets user and skill tags that the user does not currently have. Used for the skills view
 router.get('/skills', withAuth, async (req, res) => {
@@ -147,7 +116,6 @@ router.get('/skills', withAuth, async (req, res) => {
         }],
     });
     const excludedTags = userData.tags.map((excluded) => excluded.get(userData.tags.id));
-    //console.log(excludedTags);
     const excludedArr = [];
     excludedTags.forEach(element => {
       excludedArr.push(element.id);
@@ -159,25 +127,18 @@ router.get('/skills', withAuth, async (req, res) => {
         }
       }
     });
-
     const userInfoData = await User.findByPk(req.session.user_id);
-
     //Gives 'plain' versions of data to be used with Handlebars.
-
     const userDataPlain = userInfoData.get({ plain: true })
-
     const userTagsPlain = userData.tags.map((data) => data.get({ plain: true }));
     console.log("user tags ", userTagsPlain)
     const tagDataPlain = tagData.map((data) => data.get({ plain: true }));
-
     res.status(200).render('skills', {
       tagDataPlain,
       userDataPlain,
       userTagsPlain,
       logged_in: req.session.logged_in
     });
-
-
   } catch (err) {
     res.status(500).json(err);
     console.log(err);
@@ -201,9 +162,7 @@ router.put('/skills', async (req, res) => {
         });
     })
     .then((skillTags) => {
-
       const skillTagIds = skillTags.map(({ tag_id }) => tag_id);
-
       const newSkillTags = req.body.tagIds
         .filter((tag_id) => !skillTagIds.includes(tag_id))
         .map((tag_id) => {
@@ -212,18 +171,7 @@ router.put('/skills', async (req, res) => {
             tag_id,
           };
         })
-      /* const skillTagsToRemove = req.body.tagIds
-        .filter(({ tag_id }) => skillTagIds.includes(tag_id))
-        .map((tag_id) => {
-          return {
-            user_id: req.session.user_id,
-            tag_id,
-          }
-        }) */
-
-      //console.log("SKILLS TO REMOVE " , skillTagsToRemove)
       return Promise.all([
-        // SkillTag.destroy({ where: { id: skillTagsToRemove } }),
         SkillTag.bulkCreate(newSkillTags),
       ]);
     })
@@ -232,42 +180,8 @@ router.put('/skills', async (req, res) => {
       res.status(400).json(err);
     });
 });
-//   User.update(req.body, {
-//     individualHooks: true,
-//     where: {
-//       id: req.session.user_id
-//     },
-//     returning: true,
-//     plain: true
-//   })
-//   .then((user) => {
-//     return SkillTag.findAll({ where: { user_id: req.session.user_id } });
-//   })
-//   .then((skillTags) => {
-//     const skillTagIds = skillTags.map(({tag_id}) => tag_id);
-//     const newSkillTags = req.body.skillTagIds
-//     .filter((tag_id) =>!skillTagIds.includes(tag_id))
-//     .map((tag_id) => {
-//       return {
-//         user_id: req.session.user_id,
-//         tag_id
-//       };
-//   });
-//   const skillTagsToRemove = skillTagIds
-//     .filter(({tag_id}) => !req.body.tagIds.includes(tag_id))
-//     .map(({id}) => id);
 
-//     return Promise.all([
-//       skillTag.destroy({ where: { id: skillTagsToRemove } }),
-//       skillTag.bulkCreate(newSkillTags)
-//     ]);
-//   })
-//   .then((updatedSkillTags) => res.json(updatedSkillTags))
-//   .catch((err) => {
-//     res.status(500).json(err);
-//   });
-// });
-
+//Route to delete user skills
 router.delete('/skills', async (req, res) => {
   console.log("REQ LOG", req.body.id)
   console.log("REQ USER", req.session.user_id)
@@ -279,16 +193,11 @@ router.delete('/skills', async (req, res) => {
   }
 });
 
-
-
 // search for jobs
 router.get('/search', async (req, res) => {
   let { term } = req.query;
-
-
   try {
     const jobSearch = await JobPosting.findAll({
-
       include: [
         {
           model: Tag,
@@ -302,7 +211,6 @@ router.get('/search', async (req, res) => {
     });
     const plainJobSearch = jobSearch.map((data) => data.get({ plain: true }));
     console.log(plainJobSearch)
-
     res.render('findjobs', {
       plainJobSearch,
       logged_in: req.session.logged_in,
@@ -312,9 +220,6 @@ router.get('/search', async (req, res) => {
     console.log(err);
   }
 });
-
-
-
 
 // --------------Logout-----------------------//
 router.post('/logout', (req, res) => {
@@ -326,8 +231,5 @@ router.post('/logout', (req, res) => {
     res.status(404).end();
   }
 });
-
-
-
 
 module.exports = router;
