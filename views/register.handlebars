@@ -10,7 +10,7 @@
     <div class="create-account">
         <form>
             <div class="title has-text-black">
-                <h2> Create Account</h2>
+                <h2 class="title"> Create Account</h2>
             </div>
             {{!-- First name --}}
             <div class="field has-text-black">
@@ -32,8 +32,14 @@
                 <label for="Name">Password</label>
                 <input class="input is-primary" id="password" type="password" placeholder="Password">
             </div>
+            <div class="has-text-black">
+                <ul>
+                    <li>▪️ 6 characters minimum</li>
+
+                </ul>
+            </div>
             {{!-- sign up btn --}}
-            <div class="field mt-6">
+            <div class="field mt-2">
                 <button class="button is-primary is-fullwidth" id="sign-up" type="submit">Sign Up</button>
             </div>
         </form>

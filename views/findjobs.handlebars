@@ -1,8 +1,4 @@
-{{!-- job search field --}}
-
-{{!-- {{#if messages.info}}
-<div class="alert alert-success">{{messages.info}}</div>
-{{/if}} --}}
+{{!-- search bar --}}
 <div class="find-job">
   <div class="overlay">
     <form action="/search" class="field is-grouped searchInput">
@@ -65,7 +61,7 @@
 </div>
 </div> --}}
 
-
+{{!-- Using search bar --}}
 <div class="columns is-centered ">
   {{#each plainJobSearch}}
   <div class="column">
@@ -94,5 +90,14 @@
     </div>
   </div>
 
+</div>
+{{else}}
+<div class="column my-6">
+  <p class="no-jobs">
+    <img src="https://user-images.githubusercontent.com/112873819/220351063-16e019b7-ad3d-4290-a81e-79da95476f09.png"
+      width="50" height="28">
+  </p>
+
+  <h2>Sorry, no jobs found for that search.</h2>
 </div>
 {{/each}}
