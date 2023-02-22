@@ -53,7 +53,7 @@ In this project, We developed an webapp that to help recent bootcamp graduates l
 
 Repository URL  - https://github.com/DaveEstey/bootcamp-work-finder
 
-Deployed Website - https://bootcamp-work-finder.herokuapp.com/
+Deployed Website - https://david-bootcamp-work-finder.herokuapp.com/
 
 ## screenshots
 
